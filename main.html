@@ -143,6 +143,7 @@
   code.src = 'src/img/code.png';
   code.onload=function(){
     cxt.drawImage(code,260,460,100,100);
+	cxt.textAlign='center';
     cxt.font="normal normal normal 10px Arial"
     cxt.fillText("扫码体验" ,310, 575);
   }
@@ -213,7 +214,6 @@
     window.location.reload()
   }
   function share(){ //转发分享函数
-    cxt.textAlign='center';
     cxt.font = "normal normal bold 30px Arial";
     cxt.fillText("我的脱单指数为"+res.toFixed(3) ,200, 150);
     cxt.font = "normal normal normal 20px Arial";
