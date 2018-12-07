@@ -10,12 +10,12 @@
   <div id='test'>
   <img src='src/img/background.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
   
-  <img id='onetrue1' src='src/img/button.png' onclick="onetrue()" style='z-index:1;position:absolute;top:83em;left:18%;width:10%'/>
-  <img id='onetrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;top:83em;left:18%;width:10%'/>
-  <img id='onefalse1' src='src/img/button.png' onclick="onefalse()" style='z-index:1;position:absolute;top:83em;left:42%;width:10%'/>
-  <img id='onefalse2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;top:83em;left:42%;width:10%'/>
+  <img id='onetrue1' src='src/img/button.png' onclick="onetrue()" style='z-index:1;position:absolute;left:18%;width:10%'/>
+  <img id='onetrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:18%;width:10%'/>
+  <img id='onefalse1' src='src/img/button.png' onclick="onefalse()" style='z-index:1;position:absolute;left:42%;width:10%'/>
+  <img id='onefalse2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:42%;width:10%'/>
   <!--
-  <img id='twotrue1' src='src/img/button.png' onclick="twotrue()" style='z-index:1;position:absolute;top:175%;left:18%;width:10%'/>
+  <img id='twotrue1' src='src/img/button.png' onclick="twotrue()" style='z-index:1;position:absolute;top:108em;left:27%;width:10%'/>
   <img id='twotrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;top:175%;left:18%;width:10%'/>
   <img id='twofalse1' src='src/img/button.png' onclick="twofalse()" style='z-index:1;position:absolute;top:175%;left:42%;width:10%'/>
   <img id='twofalse2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;top:175%;left:42%;width:10%'/>
@@ -146,6 +146,10 @@
 <script type="text/javascript" src="src/js/Bmob-1.6.3.min.js"></script>
 <script type="text/javascript" src="src/js/html2canvas.min.js"></script>
 <script type="text/javascript">
+  document.getElementById('onetrue1').style.top=0.86*screen.width
+  document.getElementById('onetrue2').style.top=0.86*screen.width
+  document.getElementById('onefalse1').style.top=0.86*screen.width
+  document.getElementById('onefalse2').style.top=0.86*screen.width
   var APP,HAP,INC,GPA,STFC,res;
   var cxt=document.getElementById("share").getContext("2d");
   cxt.fillStyle='#FFFFFF';
