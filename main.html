@@ -99,11 +99,7 @@
 	<img id='resbutton3' onClick="share()" src='src/img/resbutton3.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
   </div>
   <div id='sharediv' align='center' style='margin-left:5%;margin-right:5%' hidden>
-    <center><img id='sharepic' src='' style='width:400px;height:600px;'/></center>
-	<div>长按图片即可保存并分享</div>
-	<br />
-	<br />
-	<center><button onClick="back()">返回</button></center>
+    <img id='sharepic' src='' style='position:absolute;top:0;left:0;width:100%;height:auto;'/>
   </div>
   <div id='friend' align='center' style='margin-left:5%;margin-right:5%' hidden>
     <form action="" method="post" target="nm_iframe" id='form2'>
@@ -229,9 +225,6 @@
   }
   var TD,APP,HAP,INC,GPA,STFC,res;
   var cxt=document.getElementById("share").getContext("2d");
-  cxt.fillStyle='#FFFFFF';
-  cxt.fillRect(0,0,400,600);
-  cxt.fillStyle='#000000';
   Bmob.initialize("7f518700e53363110974536ce2d479fb", "a7bdd090a38a53c3487cb57c00e6cd8f");
   function onetrue(){
     TD=1;
@@ -343,47 +336,58 @@
     window.location.reload()
   }
   function share(){ //转发分享函数
-    var code = new Image();
-    code.src = 'src/img/code.png';
-    code.onload=function(){
-      cxt.drawImage(code,260,460,100,100);
+    var bg = new Image();
+    bg.src = 'src/img/sad.jpg';
+    bg.onload=function(){
+	  console.log(bg)
+      cxt.drawImage(bg,0,0,400,600);
 	  cxt.textAlign='center';
-      cxt.font="normal normal normal 10px Arial"
-      cxt.fillText("扫码体验" ,310, 575);
+	  cxt.fillStyle="#FFFFFF"
+      cxt.font = "15px Arial";
+      cxt.fillText(res.toFixed(3) ,260, 432);
+	  cxt.fillStyle="#000000"
+	  cxt.font = "14px Arial";
+	  if(res>=0&&res<0.1){
+	    var info=["或许你应该自信点儿 (•̀ω•́)✧","npy？这辈子是不可能的了 (ಥ_ಥ)","打扰一下，你是母胎SOLO嘛"]
+	    cxt.fillText("或许你应该自信点儿 (•̀ω•́)✧" ,200, 470);
+	  }
+	  else if(res>=0.1&&res<0.2){
+	    var info=["不找了～找不到了～","小分队救不了你了 (ಥ_ಥ)","冬天应该只有静电和你啪啪啪吧(•͈˽•͈)"] 
+	    cxt.fillText("不找了～找不到了～" ,200, 470);
+	  }
+	  else if(res>=0.2&&res<0.3){
+	    var info=["或许关注久了颜值就能提高吧 (•͈˽•͈)","只能说，同学你的进步空间很大哟","你不叫单身狗，你叫孤狼"]
+	    cxt.fillText("或许关注久了颜值就能提高吧 (•͈˽•͈)" ,200, 470);
+	  }
+	  else if(res>=0.3&&res<0.4){
+	    var info=["我这叫凭实力单身","dbq你拖了同济人的后腿 (ಥ_ಥ)","你应该在车底，不应该在这里(•̀ω•́)✧"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	  }
+	  else if(res>=0.4&&res<0.5){
+	    var info=["dbq你拖了吃货们的后腿 (ಥ_ಥ)","今年圣诞节你还是一个人过吧(ಥ_ಥ)","你一条狗 吃饭旅行走走停停 (ಥ_ಥ)"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	  }
+	  else if(res>=0.5&&res<0.6){
+	    var info=["耶！你高于人均水平了 (•̀ω•́)✧","一个狗的夜，你的心，应该放在哪里","天青色等艳遇，你在等小分队的分配咩"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	  }
+	  else if(res>=0.6&&res<0.7){
+	    var info=["我觉得你低估了自己的颜值 (๑•́₃•̀๑)","你没有打火机怎么点燃了小分队的心","同学，你打分是不是谦虚了一下"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	  }
+	  else if(res>=0.7&&res<0.8){
+	    var info=["哇塞！优秀的同学请你坐下 (∩ᵒ̴̶̷̤⌔ᵒ̴̶̷̤∩)","诶哟不错哦，小分队给你分配～","你可以继续跟着小分队胡吃海塞啦"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	  }
+	  else if(res>=0.8&&res<0.9){
+	    var info=["你离脱单只差1、、呢 (•̀ω•́)✧","快来接收你的命定良人(•̀ω•́)✧","小分队觉得你应该经常被表白(•̀ω•́)✧"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	  }
+	  else if(res>=0.9&&res<=1){
+	    var info=["千年一遇！！这种人还不脱单？？？","请问你现在有几个npy？","传说中的撩妹(汉)大神?"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	  }
     }
-    cxt.font = "normal normal bold 30px Arial";
-    cxt.fillText("我的脱单指数为"+res.toFixed(3) ,200, 150);
-    cxt.font = "normal normal normal 20px Arial";
-	if(res>=0&&res<0.1){
-	  cxt.fillText("或许你应该自信点儿 (•̀ω•́)✧" ,200, 300);
-	}
-	else if(res>=0.1&&res<0.2){
-	  cxt.fillText("不找了～找不到了～" ,200, 300);
-	}
-	else if(res>=0.2&&res<0.3){
-	  cxt.fillText("或许关注久了颜值就能提高吧 (•͈˽•͈)" ,200, 300);
-	}
-	else if(res>=0.3&&res<0.4){
-	  cxt.fillText("我这叫凭实力单身" ,200, 300);
-	}
-	else if(res>=0.4&&res<0.5){
-	  cxt.fillText("dbq你拖了吃货们的后腿 (ಥ_ಥ)" ,200, 300);
-	}
-	else if(res>=0.5&&res<0.6){
-	  cxt.fillText("耶！你高于人均水平了 (•̀ω•́)✧" ,200, 300);
-	}
-	else if(res>=0.6&&res<0.7){
-	  cxt.fillText("我觉得你低估了自己的颜值 (๑•́₃•̀๑)" ,200, 300);
-	}
-	else if(res>=0.7&&res<0.8){
-	  cxt.fillText("哇塞！优秀的同学请你坐下 (∩ᵒ̴̶̷̤⌔ᵒ̴̶̷̤∩)" ,200, 300);
-	}
-	else if(res>=0.8&&res<0.9){
-	  cxt.fillText("你离脱单只差1、、呢 (•̀ω•́)✧" ,200, 300);
-	}
-	else if(res>=0.9&&res<=1){
-	  cxt.fillText("千年一遇！！这种人还不脱单？？？" ,200, 300);
-	}
 	var share = document.getElementById("share");
     var image = share.toDataURL("image/png");
     document.getElementById('res').style.display='none';
