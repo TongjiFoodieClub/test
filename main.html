@@ -8,7 +8,7 @@
   <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
   <canvas id="share" width="400" height="600" hidden></canvas>
   <div id='test'>
-  <img src='src/img/background.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
+  <img id='bg' src='src/img/background.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
   
   <img id='onetrue1' src='src/img/button.png' onclick="onetrue()" style='z-index:1;position:absolute;left:18%;width:10%'/>
   <img id='onetrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:18%;width:10%'/>
@@ -144,6 +144,7 @@
 <script type="text/javascript" src="src/js/Bmob-1.6.3.min.js"></script>
 <script type="text/javascript" src="src/js/html2canvas.min.js"></script>
 <script type="text/javascript">
+  document.getElementById('bg').onload=function(){
   document.getElementById('onetrue1').style.top=0.288*document.body.scrollHeight;
   document.getElementById('onetrue2').style.top=0.288*document.body.scrollHeight;
   document.getElementById('onefalse1').style.top=0.288*document.body.scrollHeight;
@@ -223,7 +224,7 @@
   document.getElementById('six11on').style.top=0.828*document.body.scrollHeight;
   
   document.getElementById('submit').style.top=0.88*document.body.scrollHeight;
-  
+  }
   var TD,APP,HAP,INC,GPA,STFC,res;
   var cxt=document.getElementById("share").getContext("2d");
   cxt.fillStyle='#FFFFFF';
