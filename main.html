@@ -224,7 +224,6 @@
   document.getElementById('buttons').style.display='inline';
   }
   var TD,APP,HAP,INC,GPA,STFC,res;
-  var cxt=document.getElementById("share").getContext("2d");
   Bmob.initialize("7f518700e53363110974536ce2d479fb", "a7bdd090a38a53c3487cb57c00e6cd8f");
   function onetrue(){
     TD=1;
@@ -336,18 +335,19 @@
     window.location.reload()
   }
   function share(){ //转发分享函数
-    var bg = new Image();
+    var cxt=document.getElementById("share").getContext("2d");
+    var bgpic = new Image();
 	if(res<=0.5){
-	  bg.src = 'src/img/sad.jpg'; 
+	  bgpic.src = 'src/img/sad.jpg'; 
 	}
 	else if(res>0.5&&res<=0.75){
-	  bg.src = 'src/img/normal.jpg'; 
+	  bgpic.src = 'src/img/normal.jpg'; 
 	}
 	else{
-	  bg.src = 'src/img/happy.jpg'; 
+	  bgpic.src = 'src/img/happy.jpg'; 
 	}
-    bg.onload=function(){
-      cxt.drawImage(bg,0,0,400,600);
+    bgpic.onload=function(){
+      cxt.drawImage(bgpic,0,0,400,600);
 	  cxt.textAlign='center';
 	  cxt.fillStyle="#FFFFFF"
       cxt.font = "15px Arial";
@@ -394,13 +394,11 @@
 	    var info=["千年一遇！！这种人还不脱单？？？","请问你现在有几个npy？","传说中的撩妹(汉)大神?"]
 	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
 	  }
+	  var image = document.getElementById("share").toDataURL("image/png");
+      document.getElementById('res').style.display='none';
+	  document.getElementById('sharepic').src=image;
+	  document.getElementById('sharediv').style.display='inline';
     }
-	var share = document.getElementById("share");
-    var image = share.toDataURL("image/png");
-	console.log(image)
-    document.getElementById('res').style.display='none';
-	document.getElementById('sharepic').src=image;
-	document.getElementById('sharediv').style.display='inline';
   }
   function back(){  //返回
     document.getElementById('sharediv').style.display='none';
