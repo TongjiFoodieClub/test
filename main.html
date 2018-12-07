@@ -1,0 +1,365 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+	<link rel="icon" type="image/x-icon" href="src/img/logo.ico"/>
+    <title>脱单指数测试</title>
+  </head>
+  <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
+  <br />
+  <br />
+  <br />
+  <canvas id="share" width="400" height="600" hidden></canvas>
+  <div id='test' align='center' style='margin-left:5%;margin-right:5%'>
+  <form action="" method="post" target="nm_iframe" id='form1'>
+	  <div align='left' style='display:inline-block'>
+	  1.是否关注公众号“同济吃货小分队”
+	  <br />
+	  是：
+      <input type="radio" name="one" value="1" />
+      否：
+      <input type="radio" name="one" value="0" />
+	  <br />
+	  <br />
+	  2.给自己的颜值打分：
+	  <br />
+	  1<input type="radio" name="two" value="1" />
+	  2<input type="radio" name="two" value="2" />
+	  3<input type="radio" name="two" value="3" />
+	  4<input type="radio" name="two" value="4" />
+	  5<input type="radio" name="two" value="5" />
+	  6<input type="radio" name="two" value="6" />
+	  7<input type="radio" name="two" value="7" />
+	  8<input type="radio" name="two" value="8" />
+	  9<input type="radio" name="two" value="9" />
+	  10<input type="radio" name="two" value="10" />
+	  <br />
+	  <br />
+	  3.给自己的幸福指数打分：
+	  <br />
+	  1<input type="radio" name="three" value="1" />
+	  2<input type="radio" name="three" value="2" />
+	  3<input type="radio" name="three" value="3" />
+	  4<input type="radio" name="three" value="4" />
+	  5<input type="radio" name="three" value="5" />
+	  6<input type="radio" name="three" value="6" />
+	  7<input type="radio" name="three" value="7" />
+	  8<input type="radio" name="three" value="8" />
+	  9<input type="radio" name="three" value="9" />
+	  10<input type="radio" name="three" value="10" />
+	  <br />
+	  <br />
+	  4.你的绩点
+	  <br />
+	  <input type="text" name="four"/>
+	  <br />
+	  <br />
+	  5.你的月均生活费
+	  <br />
+	  1000-1500<input type="radio" name="five" value="1" />
+	  1500-1750<input type="radio" name="five" value="2" />
+	  1750-2000<input type="radio" name="five" value="3" />
+	  <br />
+	  2000-2300<input type="radio" name="five" value="4" />
+	  2300-2700<input type="radio" name="five" value="5" />
+	  2700-3000<input type="radio" name="five" value="6" />
+	  <br />
+	  3000-3300<input type="radio" name="five" value="7" />
+	  3300-3700<input type="radio" name="five" value="8" />
+	  3700-4000<input type="radio" name="five" value="9" />
+	  <br />
+	  4000-5000<input type="radio" name="five" value="10" />
+	  5000+<input type="radio" name="five" value="11" />
+	  <br />
+	  <br />
+	  <div align='center'>
+	    <input type="submit" value="开始测试" onclick="startTest()"/>
+	  </div>
+	</div>
+  </form>
+  </div>
+  <div id='res' align='center' style='margin-left:5%;margin-right:5%' hidden>
+    <div id='grade'></div>
+	<div id='desc'></div>
+	<br />
+	<center><button onClick="makefriend()">我要脱单</button></center>
+	<br />
+	<br />
+	<center><button onClick="refresh()">再测一次</button></center>
+	<br />
+	<br />
+	<center><button onClick="share()">转发分享</button></center>
+  </div>
+  <div id='sharediv' align='center' style='margin-left:5%;margin-right:5%' hidden>
+    <center><img id='sharepic' src='' style='width:400px;height:600px;'/></center>
+	<div>长按图片即可保存并分享</div>
+	<br />
+	<br />
+	<center><button onClick="back()">返回</button></center>
+  </div>
+  <div id='friend' align='center' style='margin-left:5%;margin-right:5%' hidden>
+    <form action="" method="post" target="nm_iframe" id='form2'>
+	  <div align='left' style='display:inline-block'>
+	    你的性别
+		<br />
+		男：
+        <input type="radio" name="sex" value="男" />
+        女：
+        <input type="radio" name="sex" value="女" />
+		<br />
+		<br />
+		你的微信号
+		<br />
+		<input type="text" name="wechat"/>
+		<br />
+		<br />
+		匹配类型
+		<br />
+		脱单指数最高的：
+        <input type="radio" name="type" value="1" />
+		<br />
+        脱单指数和我最接近的：
+        <input type="radio" name="type" value="0" />
+		<br />
+		<br />
+		<div align='center'>
+	      <input type="submit" value="开始匹配" onclick="startMatch()"/>
+	    </div>
+	  </div>
+	</form>
+  </div>
+  <div id='match' align='center' style='margin-left:5%;margin-right:5%' hidden>
+    匹配中...
+  </div>
+</html>
+<script type="text/javascript" src="src/js/Bmob-1.6.3.min.js"></script>
+<script type="text/javascript" src="src/js/html2canvas.min.js"></script>
+<script type="text/javascript">
+  var APP,HAP,INC,GPA,STFC,res;
+  var cxt=document.getElementById("share").getContext("2d");
+  var code = new Image();
+  code.src = 'src/img/code.png';
+  code.onload=function(){
+    cxt.drawImage(code,260,460,100,100);
+    cxt.font="normal normal normal 10px Arial"
+    cxt.fillText("扫码体验" ,310, 575);
+  }
+  Bmob.initialize("7f518700e53363110974536ce2d479fb", "a7bdd090a38a53c3487cb57c00e6cd8f");
+  function startTest(){ //计算脱单指数
+    var form = document.getElementById("form1");
+	if(!form.elements.one.value){
+	  alert("请选择是否关注公众号“同济吃货小分队”！")
+	}
+	else if(!form.elements.two.value){
+	  alert("请给自己的颜值打分！")
+	}
+	else if(!form.elements.three.value){
+	  alert("请给自己的幸福指数打分！")
+	}
+	else if(!form.elements.four.value){
+	  alert("请输入您的绩点！")
+	}
+	else if(parseFloat(form.elements.four.value)<=0||parseFloat(form.elements.four.value)>5){
+	  alert("输入的绩点有误！")
+	}
+	else if(!form.elements.five.value){
+	  alert("请选择您的月均生活费！")
+	}
+	else{
+	  APP=Math.log(parseInt(form.elements.two.value)) / Math.log(10);
+	  HAP=Math.log(parseInt(form.elements.three.value)) / Math.log(10);
+	  INC=Math.log(parseInt(form.elements.five.value)) / Math.log(10);
+	  GPA=Math.log(parseFloat(form.elements.four.value)) / Math.log(5);
+	  STFC=parseInt(form.elements.one.value);
+	  res=(0.174*APP+0.144*HAP+0.084*INC+0.002*GPA+0.1408*STFC+0.021)/0.569;
+	  document.getElementById('test').style.display='none';
+	  document.getElementById('res').style.display='inline';
+	  document.getElementById('grade').innerHTML='您的脱单指数为'+res.toFixed(3);
+	  if(res>=0&&res<0.1){
+	    document.getElementById('desc').innerHTML='或许你应该自信点儿 (•̀ω•́)✧';
+	  }
+	  else if(res>=0.1&&res<0.2){
+	    document.getElementById('desc').innerHTML='不找了～找不到了～';
+	  }
+	  else if(res>=0.2&&res<0.3){
+	    document.getElementById('desc').innerHTML='或许关注久了颜值就能提高吧 (•͈˽•͈)';
+	  }
+	  else if(res>=0.3&&res<0.4){
+	    document.getElementById('desc').innerHTML='我这叫凭实力单身';
+	  }
+	  else if(res>=0.4&&res<0.5){
+	    document.getElementById('desc').innerHTML='dbq你拖了吃货们的后腿 (ಥ_ಥ)';
+	  }
+	  else if(res>=0.5&&res<0.6){
+	    document.getElementById('desc').innerHTML='耶！你高于人均水平了 (•̀ω•́)✧';
+	  }
+	  else if(res>=0.6&&res<0.7){
+	    document.getElementById('desc').innerHTML='我觉得你低估了自己的颜值 (๑•́₃•̀๑)';
+	  }
+	  else if(res>=0.7&&res<0.8){
+	    document.getElementById('desc').innerHTML='哇塞！优秀的同学请你坐下 (∩ᵒ̴̶̷̤⌔ᵒ̴̶̷̤∩)';
+	  }
+	  else if(res>=0.8&&res<0.9){
+	    document.getElementById('desc').innerHTML='你离脱单只差1、、呢 (•̀ω•́)✧';
+	  }
+	  else if(res>=0.9&&res<=1){
+	    document.getElementById('desc').innerHTML='千年一遇！！这种人还不脱单？？？';
+	  }
+	}
+  }
+  function refresh(){ //重新测试
+    window.location.reload()
+  }
+  function share(){ //转发分享函数
+    cxt.textAlign='center';
+    cxt.font = "normal normal bold 30px Arial";
+    cxt.fillText("我的脱单指数为"+res.toFixed(3) ,200, 150);
+    cxt.font = "normal normal normal 25px Arial";
+	if(res>=0&&res<0.1){
+	  cxt.fillText("或许你应该自信点儿 (•̀ω•́)✧" ,200, 300);
+	}
+	else if(res>=0.1&&res<0.2){
+	  cxt.fillText("不找了～找不到了～" ,200, 300);
+	}
+	else if(res>=0.2&&res<0.3){
+	  cxt.fillText("或许关注久了颜值就能提高吧 (•͈˽•͈)" ,200, 300);
+	}
+	else if(res>=0.3&&res<0.4){
+	  cxt.fillText("我这叫凭实力单身" ,200, 300);
+	}
+	else if(res>=0.4&&res<0.5){
+	  cxt.fillText("dbq你拖了吃货们的后腿 (ಥ_ಥ)" ,200, 300);
+	}
+	else if(res>=0.5&&res<0.6){
+	  cxt.fillText("耶！你高于人均水平了 (•̀ω•́)✧" ,200, 300);
+	}
+	else if(res>=0.6&&res<0.7){
+	  cxt.fillText("我觉得你低估了自己的颜值 (๑•́₃•̀๑)" ,200, 300);
+	}
+	else if(res>=0.7&&res<0.8){
+	  cxt.fillText("哇塞！优秀的同学请你坐下 (∩ᵒ̴̶̷̤⌔ᵒ̴̶̷̤∩)" ,200, 300);
+	}
+	else if(res>=0.8&&res<0.9){
+	  cxt.fillText("你离脱单只差1、、呢 (•̀ω•́)✧" ,200, 300);
+	}
+	else if(res>=0.9&&res<=1){
+	  cxt.fillText("千年一遇！！这种人还不脱单？？？" ,200, 300);
+	}
+	var share = document.getElementById("share");
+    var image = share.toDataURL("image/png");
+    document.getElementById('res').style.display='none';
+	document.getElementById('sharepic').src=image;
+	document.getElementById('sharediv').style.display='inline';
+  }
+  function back(){  //返回
+    document.getElementById('sharediv').style.display='none';
+	document.getElementById('res').style.display='inline';
+  }
+  function makefriend(){  //我要脱单
+    document.getElementById('res').style.display='none';
+	document.getElementById('friend').style.display='inline';
+  }
+  function startMatch(){  //脱单匹配函数
+    var form = document.getElementById("form2");
+	if(!form.elements.sex.value){
+	  alert("请选择您的性别！")
+	}
+	else if(!form.elements.wechat.value){
+	  alert("请选择您的微信号！")
+	}
+	else if(!form.elements.type.value){
+	  alert("请选择您要匹配的类型！")
+	}
+	else{
+	  document.getElementById('friend').style.display='none';
+	  document.getElementById('match').style.display='inline';
+	  if(form.elements.type.value=='1'){
+	    var query = Bmob.Query("test");
+		query.equalTo("sex","==", (form.elements.sex.value=='男'?'女':'男'));
+		query.equalTo("num","<", 3);
+		query.order("-res");
+		query.limit(1);
+		query.find().then(res => {
+			document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+res[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+res[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+			var query = Bmob.Query('test');
+			query.get(results[0].objectId).then(res => {
+				res.set('num',res.num+1)
+				res.save()
+			}).catch(err => {
+				console.log(err)
+			})
+		});
+	  }
+	  else if(form.elements.type.value=='0'){
+	    var query = Bmob.Query("test");
+		query.equalTo("sex","==", (form.elements.sex.value=='男'?'女':'男'));
+		query.equalTo("num","<", 3);
+		query.order("-res");
+		query.limit(1000);
+		query.find().then(results => {
+		    if(res>=results[0].res){
+			    document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				var query = Bmob.Query('test');
+				query.get(results[0].objectId).then(res => {
+					res.set('num',res.num+1)
+					res.save()
+				}).catch(err => {
+					console.log(err)
+				})
+			}
+			else if(res<=results[results.length-1].res){
+			    document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[results.length-1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[results.length-1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				var query = Bmob.Query('test');
+				query.get(results[results.length-1].objectId).then(res => {
+					res.set('num',res.num+1)
+					res.save()
+				}).catch(err => {
+					console.log(err)
+				})
+			}
+			else{
+				for(var i=0;i<results.length-1;i++){
+					if(results[i].res>=res&&results[i+1].res<=res){
+						if((results[i].res-res)<=(res-results[i+1].res)){
+							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+							var query = Bmob.Query('test');
+							query.get(results[i].objectId).then(res => {
+								res.set('num',res.num+1)
+								res.save()
+							}).catch(err => {
+								console.log(err)
+							})
+						}
+						else{
+							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i+1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i+1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+							var query = Bmob.Query('test');
+							query.get(results[i+1].objectId).then(res => {
+								res.set('num',res.num+1)
+								res.save()
+							}).catch(err => {
+								console.log(err)
+							})
+						}
+						break;
+					}
+				}
+			}
+		});
+	  }
+	  const query = Bmob.Query('test');
+	  query.set("APP",APP)
+	  query.set("HAP",HAP)
+	  query.set("INC",INC)
+	  query.set("GPA",GPA)
+	  query.set("STFC",STFC)
+	  query.set("res",res)
+	  query.set("sex",form.elements.sex.value)
+	  query.set("wechat",form.elements.wechat.value)
+	  query.set("num",0)
+	  query.save().then(res => {
+	    console.log(res)
+	  }).catch(err => {
+        console.log(err)
+	  })
+	}
+  }
+</script>
