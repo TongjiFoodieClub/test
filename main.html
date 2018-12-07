@@ -4,11 +4,11 @@
 	<link rel="icon" type="image/x-icon" href="src/img/logo.ico"/>
     <title>脱单指数测试</title>
   </head>
-  <body onload="load()">
+  <body>
   <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
   <canvas id="share" width="400" height="600" hidden></canvas>
   <div id='test'>
-  <img id='bg' src='src/img/background.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
+  <img id='bg' src='src/img/background.jpg' onload="load()" style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
   <div id='buttons' hidden>
   <img id='onetrue1' src='src/img/button.png' onclick="onetrue()" style='z-index:1;position:absolute;left:18%;width:10%'/>
   <img id='onetrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:18%;width:10%'/>
@@ -337,9 +337,16 @@
   }
   function share(){ //转发分享函数
     var bg = new Image();
-    bg.src = 'src/img/sad.jpg';
+	if(res<=0.5){
+	  bg.src = 'src/img/sad.jpg'; 
+	}
+	else if(res>0.5&&res<=0.75){
+	  bg.src = 'src/img/normal.jpg'; 
+	}
+	else{
+	  bg.src = 'src/img/happy.jpg'; 
+	}
     bg.onload=function(){
-	  console.log(bg)
       cxt.drawImage(bg,0,0,400,600);
 	  cxt.textAlign='center';
 	  cxt.fillStyle="#FFFFFF"
@@ -390,6 +397,7 @@
     }
 	var share = document.getElementById("share");
     var image = share.toDataURL("image/png");
+	console.log(image)
     document.getElementById('res').style.display='none';
 	document.getElementById('sharepic').src=image;
 	document.getElementById('sharediv').style.display='inline';
