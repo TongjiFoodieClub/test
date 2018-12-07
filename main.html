@@ -7,6 +7,10 @@
   <body>
   <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
   <canvas id="share" width="1600" height="2400" hidden></canvas>
+  <div id='loading' class="spinner">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
   <div id='test'>
   <img id='bg' src='src/img/background.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
   <div id='buttons' hidden>
@@ -137,6 +141,56 @@
   </div>
   </body>
 </html>
+<style>
+.spinner {
+  margin: 100px auto;
+  width: 90px;
+  height: 90px;
+  position: relative;
+  text-align: center;
+   
+  -webkit-animation: rotate 2.0s infinite linear;
+  animation: rotate 2.0s infinite linear;
+}
+ 
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #67CF22;
+  border-radius: 100%;
+   
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+ 
+.dot2 {
+  top: auto;
+  bottom: 0px;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+ 
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+ 
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+</style>
 <script type="text/javascript" src="src/js/Bmob-1.6.3.min.js"></script>
 <script type="text/javascript" src="src/js/html2canvas.min.js"></script>
 <script type="text/javascript">
@@ -224,6 +278,7 @@
 		document.getElementById('submit').style.top=0.88*document.body.scrollHeight;
   
 		document.getElementById('buttons').style.display='inline';
+		document.getElementById('loading').style.display='none';
     }
   }, 30)
   var TD,APP,HAP,INC,GPA,STFC,res;
@@ -338,6 +393,7 @@
     window.location.reload()
   }
   function share(){ //转发分享函数
+    document.getElementById('loading').style.display='inline';
     var cxt=document.getElementById("share").getContext("2d");
     var bgpic = new Image();
 	if(res<=0.5){
@@ -353,10 +409,10 @@
       cxt.drawImage(bgpic,0,0,1600,2400);
 	  cxt.textAlign='center';
 	  cxt.fillStyle="#FFFFFF"
-      cxt.font = "30px Arial";
+      cxt.font = "50px Arial";
       cxt.fillText(res.toFixed(3) ,1040, 1728);
 	  cxt.fillStyle="#000000"
-	  cxt.font = "28px Arial";
+	  cxt.font = "48px Arial";
 	  if(res>=0&&res<0.1){
 	    var info=["或许你应该自信点儿 (•̀ω•́)✧","npy？这辈子是不可能的了 (ಥ_ಥ)","打扰一下，你是母胎SOLO嘛"]
 	    cxt.fillText("或许你应该自信点儿 (•̀ω•́)✧" ,800, 1880);
@@ -401,6 +457,7 @@
       document.getElementById('res').style.display='none';
 	  document.getElementById('sharepic').src=image;
 	  document.getElementById('sharediv').style.display='inline';
+	  document.getElementById('loading').style.display='none';
     }
   }
   function back(){  //返回
