@@ -4,7 +4,7 @@
 	<link rel="icon" type="image/x-icon" href="src/img/logo.ico"/>
     <title>脱单指数测试</title>
   </head>
-  <body>
+  <body onload="load()">
   <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
   <canvas id="share" width="400" height="600" hidden></canvas>
   <div id='test'>
@@ -144,6 +144,7 @@
 <script type="text/javascript" src="src/js/Bmob-1.6.3.min.js"></script>
 <script type="text/javascript" src="src/js/html2canvas.min.js"></script>
 <script type="text/javascript">
+  function load(){
   document.getElementById('onetrue1').style.top=0.288*document.body.scrollHeight;
   document.getElementById('onetrue2').style.top=0.288*document.body.scrollHeight;
   document.getElementById('onefalse1').style.top=0.288*document.body.scrollHeight;
@@ -223,7 +224,7 @@
   document.getElementById('six11on').style.top=0.828*document.body.scrollHeight;
   
   document.getElementById('submit').style.top=0.88*document.body.scrollHeight;
-  
+  }
   var TD,APP,HAP,INC,GPA,STFC,res;
   var cxt=document.getElementById("share").getContext("2d");
   cxt.fillStyle='#FFFFFF';
