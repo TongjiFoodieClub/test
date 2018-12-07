@@ -4,10 +4,16 @@
 	<link rel="icon" type="image/x-icon" href="src/img/logo.ico"/>
     <title>脱单指数测试</title>
   </head>
+  <body>
   <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
   <canvas id="share" width="400" height="600" hidden></canvas>
-  <img src='src/img/background.jpg' style='width:100%;'/>
-  <div id='test' align='center' style='margin-left:5%;margin-right:5%' hidden>
+  <div id='test'>
+  <img src='src/img/background.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
+  <img id='onetrue1' src='src/img/button.png' onclick="onetrue()" style='z-index:1;position:absolute;top:175%;left:18%;width:10%'/>
+  <img id='onetrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;top:175%;left:18%;width:10%'/>
+  <img id='onefalse1' src='src/img/button.png' onclick="onefalse()" style='z-index:1;position:absolute;top:175%;left:42%;width:10%'/>
+  <img id='onefalse2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;top:175%;left:42%;width:10%'/>
+  <!--
   <form action="" method="post" target="nm_iframe" id='form1'>
 	  <div align='left' style='display:inline-block'>
 	  1.是否关注公众号“同济吃货小分队”
@@ -74,6 +80,7 @@
 	  </div>
 	</div>
   </form>
+  -->
   </div>
   <div id='res' align='center' style='margin-left:5%;margin-right:5%' hidden>
     <div id='grade'></div>
@@ -128,6 +135,7 @@
   <div id='match' align='center' style='margin-left:5%;margin-right:5%' hidden>
     匹配中...
   </div>
+  </body>
 </html>
 <script type="text/javascript" src="src/js/Bmob-1.6.3.min.js"></script>
 <script type="text/javascript" src="src/js/html2canvas.min.js"></script>
@@ -146,6 +154,18 @@
     cxt.fillText("扫码体验" ,310, 575);
   }
   Bmob.initialize("7f518700e53363110974536ce2d479fb", "a7bdd090a38a53c3487cb57c00e6cd8f");
+  function onetrue(){
+    document.getElementById('onetrue1').style.display='none';
+	document.getElementById('onetrue2').style.display='inline';
+	document.getElementById('onefalse2').style.display='none';
+	document.getElementById('onefalse1').style.display='inline';
+  }
+  function onefalse(){
+    document.getElementById('onefalse1').style.display='none';
+	document.getElementById('onefalse2').style.display='inline';
+	document.getElementById('onetrue2').style.display='none';
+	document.getElementById('onetrue1').style.display='inline';
+  }
   function startTest(){ //计算脱单指数
     var form = document.getElementById("form1");
 	if(!form.elements.one.value){
