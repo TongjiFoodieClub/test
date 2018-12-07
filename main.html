@@ -6,7 +6,7 @@
   </head>
   <body>
   <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
-  <canvas id="share" width="400" height="600" hidden></canvas>
+  <canvas id="share" width="800" height="1200" hidden></canvas>
   <div id='test'>
   <img id='bg' src='src/img/background.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
   <div id='buttons' hidden>
@@ -140,7 +140,92 @@
 <script type="text/javascript" src="src/js/Bmob-1.6.3.min.js"></script>
 <script type="text/javascript" src="src/js/html2canvas.min.js"></script>
 <script type="text/javascript">
+  if(document.body.scrollHeight>2*document.body.clientHeight){
+  console.log(1)
+  document.getElementById('onetrue1').style.top=0.288*document.body.scrollHeight;
+  document.getElementById('onetrue2').style.top=0.288*document.body.scrollHeight;
+  document.getElementById('onefalse1').style.top=0.288*document.body.scrollHeight;
+  document.getElementById('onefalse2').style.top=0.288*document.body.scrollHeight;
+  
+  document.getElementById('twotrue1').style.top=0.38*document.body.scrollHeight;
+  document.getElementById('twotrue2').style.top=0.38*document.body.scrollHeight;
+  document.getElementById('twofalse1').style.top=0.38*document.body.scrollHeight;
+  document.getElementById('twofalse2').style.top=0.38*document.body.scrollHeight;
+  
+  document.getElementById('three1').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three2').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three3').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three4').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three5').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three6').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three7').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three8').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three9').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three10').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three1on').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three2on').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three3on').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three4on').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three5on').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three6on').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three7on').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three8on').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three9on').style.top=0.47*document.body.scrollHeight;
+  document.getElementById('three10on').style.top=0.47*document.body.scrollHeight;
+  
+  document.getElementById('four1').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four2').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four3').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four4').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four5').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four6').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four7').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four8').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four9').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four10').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four1on').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four2on').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four3on').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four4on').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four5on').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four6on').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four7on').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four8on').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four9on').style.top=0.532*document.body.scrollHeight;
+  document.getElementById('four10on').style.top=0.532*document.body.scrollHeight;
+  
+  document.getElementById('five').style.top=0.6*document.body.scrollHeight;
+  document.getElementById('gpa').style.top=0.63*document.body.scrollHeight;
+  
+  document.getElementById('six1').style.top=0.715*document.body.scrollHeight;
+  document.getElementById('six2').style.top=0.715*document.body.scrollHeight;
+  document.getElementById('six3').style.top=0.736*document.body.scrollHeight;
+  document.getElementById('six4').style.top=0.736*document.body.scrollHeight;
+  document.getElementById('six5').style.top=0.759*document.body.scrollHeight;
+  document.getElementById('six6').style.top=0.759*document.body.scrollHeight;
+  document.getElementById('six7').style.top=0.782*document.body.scrollHeight;
+  document.getElementById('six8').style.top=0.782*document.body.scrollHeight;
+  document.getElementById('six9').style.top=0.805*document.body.scrollHeight;
+  document.getElementById('six10').style.top=0.805*document.body.scrollHeight;
+  document.getElementById('six11').style.top=0.828*document.body.scrollHeight;
+  document.getElementById('six1on').style.top=0.715*document.body.scrollHeight;
+  document.getElementById('six2on').style.top=0.715*document.body.scrollHeight;
+  document.getElementById('six3on').style.top=0.736*document.body.scrollHeight;
+  document.getElementById('six4on').style.top=0.736*document.body.scrollHeight;
+  document.getElementById('six5on').style.top=0.759*document.body.scrollHeight;
+  document.getElementById('six6on').style.top=0.759*document.body.scrollHeight;
+  document.getElementById('six7on').style.top=0.782*document.body.scrollHeight;
+  document.getElementById('six8on').style.top=0.782*document.body.scrollHeight;
+  document.getElementById('six9on').style.top=0.805*document.body.scrollHeight;
+  document.getElementById('six10on').style.top=0.805*document.body.scrollHeight;
+  document.getElementById('six11on').style.top=0.828*document.body.scrollHeight;
+  
+  document.getElementById('submit').style.top=0.88*document.body.scrollHeight;
+  
+  document.getElementById('buttons').style.display='inline';
+  }
   document.getElementById('bg').onload=function(){
+  console.log(2)
   document.getElementById('onetrue1').style.top=0.288*document.body.scrollHeight;
   document.getElementById('onetrue2').style.top=0.288*document.body.scrollHeight;
   document.getElementById('onefalse1').style.top=0.288*document.body.scrollHeight;
@@ -347,52 +432,52 @@
 	  bgpic.src = 'src/img/happy.jpg'; 
 	}
     bgpic.onload=function(){
-      cxt.drawImage(bgpic,0,0,400,600);
+      cxt.drawImage(bgpic,0,0,800,1200);
 	  cxt.textAlign='center';
 	  cxt.fillStyle="#FFFFFF"
       cxt.font = "15px Arial";
-      cxt.fillText(res.toFixed(3) ,260, 432);
+      cxt.fillText(res.toFixed(3) ,520, 864);
 	  cxt.fillStyle="#000000"
 	  cxt.font = "14px Arial";
 	  if(res>=0&&res<0.1){
 	    var info=["或许你应该自信点儿 (•̀ω•́)✧","npy？这辈子是不可能的了 (ಥ_ಥ)","打扰一下，你是母胎SOLO嘛"]
-	    cxt.fillText("或许你应该自信点儿 (•̀ω•́)✧" ,200, 470);
+	    cxt.fillText("或许你应该自信点儿 (•̀ω•́)✧" ,400, 940);
 	  }
 	  else if(res>=0.1&&res<0.2){
 	    var info=["不找了～找不到了～","小分队救不了你了 (ಥ_ಥ)","冬天应该只有静电和你啪啪啪吧(•͈˽•͈)"] 
-	    cxt.fillText("不找了～找不到了～" ,200, 470);
+	    cxt.fillText("不找了～找不到了～" ,400, 940);
 	  }
 	  else if(res>=0.2&&res<0.3){
 	    var info=["或许关注久了颜值就能提高吧 (•͈˽•͈)","只能说，同学你的进步空间很大哟","你不叫单身狗，你叫孤狼"]
-	    cxt.fillText("或许关注久了颜值就能提高吧 (•͈˽•͈)" ,200, 470);
+	    cxt.fillText("或许关注久了颜值就能提高吧 (•͈˽•͈)" ,400, 940);
 	  }
 	  else if(res>=0.3&&res<0.4){
 	    var info=["我这叫凭实力单身","dbq你拖了同济人的后腿 (ಥ_ಥ)","你应该在车底，不应该在这里(•̀ω•́)✧"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,400, 940);
 	  }
 	  else if(res>=0.4&&res<0.5){
 	    var info=["dbq你拖了吃货们的后腿 (ಥ_ಥ)","今年圣诞节你还是一个人过吧(ಥ_ಥ)","你一条狗 吃饭旅行走走停停 (ಥ_ಥ)"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,400, 940);
 	  }
 	  else if(res>=0.5&&res<0.6){
 	    var info=["耶！你高于人均水平了 (•̀ω•́)✧","一个狗的夜，你的心，应该放在哪里","天青色等艳遇，你在等小分队的分配咩"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,400, 940);
 	  }
 	  else if(res>=0.6&&res<0.7){
 	    var info=["我觉得你低估了自己的颜值 (๑•́₃•̀๑)","你没有打火机怎么点燃了小分队的心","同学，你打分是不是谦虚了一下"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,400, 940);
 	  }
 	  else if(res>=0.7&&res<0.8){
 	    var info=["哇塞！优秀的同学请你坐下 (∩ᵒ̴̶̷̤⌔ᵒ̴̶̷̤∩)","诶哟不错哦，小分队给你分配～","你可以继续跟着小分队胡吃海塞啦"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,400, 940);
 	  }
 	  else if(res>=0.8&&res<0.9){
 	    var info=["你离脱单只差1、、呢 (•̀ω•́)✧","快来接收你的命定良人(•̀ω•́)✧","小分队觉得你应该经常被表白(•̀ω•́)✧"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,400, 940);
 	  }
 	  else if(res>=0.9&&res<=1){
 	    var info=["千年一遇！！这种人还不脱单？？？","请问你现在有几个npy？","传说中的撩妹(汉)大神?"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,200, 470);
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,400, 940);
 	  }
 	  var image = document.getElementById("share").toDataURL("image/png");
       document.getElementById('res').style.display='none';
