@@ -16,7 +16,7 @@
 		<img id='male2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:35%;width:10%'/>
 		<img id='female1' src='src/img/button.png' onclick="male()" style='z-index:1;position:absolute;left:68%;width:10%'/>
 		<img id='female2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:68%;width:10%'/>
-		<input id='wechat' type='text' style='z-index:1;position:absolute;left:35%;width:55%;height:100;line-height:100;background-color:white;border-radius:10px;border:none;padding-left:10px;padding-right:10px;font-size:50px'/>
+		<input id='wechat' type='text' style='z-index:1;position:absolute;left:35%;width:55%;background-color:white;border-radius:10px;border:none;padding-left:10px;padding-right:10px;font-size:50px'/>
 		<img id='type1' src='src/img/button.png' onclick="type1()" style='z-index:1;position:absolute;left:44%;width:10%'/>
 		<img id='type1on' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:44%;width:10%'/>
 		<img id='type2' src='src/img/button.png' onclick="type2()" style='z-index:1;position:absolute;left:44%;width:10%'/>
@@ -102,6 +102,8 @@
 			document.getElementById('female2').style.top=0.295*height;
 			
 			document.getElementById('wechat').style.top=0.385*height;
+			document.getElementById('wechat').style.height=height*100/2135;
+			document.getElementById('wechat').style.lineHeight=height*100/2135;
 			
 			document.getElementById('type1').style.top=0.46*height;
 			document.getElementById('type1on').style.top=0.46*height;
