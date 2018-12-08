@@ -132,7 +132,7 @@
 		    document.getElementById('match').style.display="inline";
 			document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+res[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+res[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
 			var query = Bmob.Query('test');
-			query.get(results[0].objectId).then(res => {
+			query.get(res[0].objectId).then(res => {
 				res.set('num',res.num+1)
 				res.save()
 			}).catch(err => {
