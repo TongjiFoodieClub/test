@@ -93,13 +93,6 @@
 		<img id='submit' src='src/img/submit.png' onclick="startTest()" style='z-index:1;position:absolute;margin-left:27.5%;width:45%'/>
 	</div>
   </div>
-  <div id='res' align='center' style='margin-left:5%;margin-right:5%' hidden>
-    <img src='src/img/res.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
-	<div id='grade' style='z-index:1;position:absolute;left:39%;color:white;font-size:90px'></div>
-	<img id='resbutton1' onClick="makefriend()" src='src/img/resbutton1.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
-	<img id='resbutton2' onClick="refresh()" src='src/img/resbutton2.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
-	<img id='resbutton3' onClick="share()" src='src/img/resbutton3.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
-  </div>
   </body>
 </html>
 <style>
@@ -337,23 +330,7 @@
 	else{
 	  GPA=Math.log(parseFloat(grade)) / Math.log(5);
 	  res=(0.33*APP+0.30*HAP+0.15*INC+0.11*GPA+0.1*STFC)/0.99621;
-	  document.getElementById('test').style.display='none';
-	  document.getElementById('res').style.display='inline';
-	  document.getElementById('grade').innerHTML=res.toFixed(3);
-	  document.getElementById('grade').style.top=0.34*document.body.scrollHeight;
-      document.getElementById('resbutton1').style.top=0.48*document.body.scrollHeight;
-      document.getElementById('resbutton2').style.top=0.57*document.body.scrollHeight;
-      document.getElementById('resbutton3').style.top=0.66*document.body.scrollHeight;
-	  window.scrollTo(0,0)
+	  window.location.href='res.html?info='+res+'&'+APP+'&'+HAP+'&'+INC+'&'+GPA+'&'+STFC;
 	}
-  }
-  function refresh(){ //重新测试
-    window.location.reload()
-  }
-  function share(){ //跳转分享
-    window.location.href='share.html?res='+res;
-  }
-  function makefriend(){  //我要脱单
-    window.location.href='match.html?info='+res+'&'+APP+'&'+HAP+'&'+INC+'&'+GPA+'&'+STFC;
   }
 </script>

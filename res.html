@@ -1,0 +1,47 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+	<link rel="icon" type="image/x-icon" href="src/img/logo.ico"/>
+    <title>脱单指数测试</title>
+  </head>
+  <body>
+    <div align='center' style='margin-left:5%;margin-right:5%'>
+		<img id='bg' src='src/img/res.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
+		<div id='grade' style='z-index:1;position:absolute;left:39%;color:white;font-size:90px'></div>
+		<img id='resbutton1' onClick="makefriend()" src='src/img/resbutton1.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
+		<img id='resbutton2' onClick="refresh()" src='src/img/resbutton2.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
+		<img id='resbutton3' onClick="share()" src='src/img/resbutton3.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
+	</div>
+  </body>
+</html>
+<script type="text/javascript">
+    if(!location.search){
+		window.location.href='main.html';
+	}
+	var info=location.search.split('=')[1].split('&');
+	var res=parseFloat(info[0]);
+	var APP=parseFloat(info[1]);
+	var HAP=parseFloat(info[2]);
+	var INC=parseFloat(info[3]);
+	var GPA=parseFloat(info[4]);
+	var STFC=parseInt(info[5]);
+	var timer = setInterval(function() {
+		if (document.getElementById('bg').complete) {
+			clearInterval(timer)
+			document.getElementById('grade').innerHTML=res.toFixed(3);
+			document.getElementById('grade').style.top=0.34*document.body.scrollHeight;
+			document.getElementById('resbutton1').style.top=0.48*document.body.scrollHeight;
+			document.getElementById('resbutton2').style.top=0.57*document.body.scrollHeight;
+			document.getElementById('resbutton3').style.top=0.66*document.body.scrollHeight;
+		}
+	},30)
+	function refresh(){ //重新测试
+		window.location.href='main.html';
+	}
+	function share(){ //跳转分享
+		window.location.href='share.html?res='+res;
+	}
+	function makefriend(){  //我要脱单
+		window.location.href='match.html?info='+res+'&'+APP+'&'+HAP+'&'+INC+'&'+GPA+'&'+STFC;
+	}
+</script>
