@@ -5,6 +5,10 @@
     <title>脱单指数测试</title>
   </head>
   <body>
+    <div id='loading' class="spinner">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
     <div align='center' style='margin-left:5%;margin-right:5%'>
 		<img id='bg' src='src/img/res.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
 		<div id='grade' style='z-index:1;position:absolute;left:39%;color:white;font-size:90px'></div>
@@ -16,6 +20,56 @@
 	</div>
   </body>
 </html>
+<style>
+.spinner {
+  margin: 100px auto;
+  width: 90px;
+  height: 90px;
+  position: relative;
+  text-align: center;
+   
+  -webkit-animation: rotate 2.0s infinite linear;
+  animation: rotate 2.0s infinite linear;
+}
+ 
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #67CF22;
+  border-radius: 100%;
+   
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+ 
+.dot2 {
+  top: auto;
+  bottom: 0px;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+ 
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+ 
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+</style>
 <script type="text/javascript">
     if(!location.search){
 		window.location.href='main.html';
@@ -35,6 +89,7 @@
 			document.getElementById('resbutton1').style.top=0.48*document.body.scrollHeight;
 			document.getElementById('resbutton2').style.top=0.57*document.body.scrollHeight;
 			document.getElementById('resbutton3').style.top=0.66*document.body.scrollHeight;
+			document.getElementById('loading').style.visibility="hidden";
 			document.getElementById('buttons').style.display="inline";
 		}
 	},30)
