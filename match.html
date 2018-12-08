@@ -5,43 +5,29 @@
     <title>脱单指数测试</title>
   </head>
   <body>
-    <div id='loading' class="spinner" hidden>
+    <div id='loading' class="spinner">
 		<div class="dot1"></div>
 		<div class="dot2"></div>
 	</div>
-	<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
-	<div id='friend' align='center' style='margin-left:5%;margin-right:5%'>
-		<form action="" method="post" target="nm_iframe" id='form2'>
-			<div align='left' style='display:inline-block'>
-				你的性别
-				<br />
-				男：
-				<input type="radio" name="sex" value="男" />
-				女：
-				<input type="radio" name="sex" value="女" />
-				<br />
-				<br />
-				你的微信号
-				<br />
-				<input type="text" name="wechat"/>
-				<br />
-				<br />
-				匹配类型
-				<br />
-				脱单指数最高的：
-				<input type="radio" name="type" value="1" />
-				<br />
-				脱单指数和我最接近的：
-				<input type="radio" name="type" value="0" />
-				<br />
-				<br />
-				<div align='center'>
-					<input type="submit" value="开始匹配" onclick="startMatch()"/>
-				</div>
-			</div>
-		</form>
+	<div id='friend'>
+	<img id='bg' src='src/img/match.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
+	<div id='buttons' hidden>
+		<img id='male1' src='src/img/button.png' onclick="female()" style='z-index:1;position:absolute;left:35%;width:10%'/>
+		<img id='male2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:35%;width:10%'/>
+		<img id='female1' src='src/img/button.png' onclick="male()" style='z-index:1;position:absolute;left:68%;width:10%'/>
+		<img id='female2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:68%;width:10%'/>
+		<input id='wechat' type='text' style='z-index:1;position:absolute;left:35%;width:55%;height:100;line-height:100;background-color:white;border-radius:10px;border:none;padding-left:10px;padding-right:10px;font-size:50px'/>
+		<img id='type1' src='src/img/button.png' onclick="type1()" style='z-index:1;position:absolute;left:44%;width:10%'/>
+		<img id='type1on' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:44%;width:10%'/>
+		<img id='type2' src='src/img/button.png' onclick="type2()" style='z-index:1;position:absolute;left:44%;width:10%'/>
+		<img id='type2on' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:44%;width:10%'/>
+		<img id='button' src='src/img/matchbutton.png' onclick="startMatch()" style='z-index:1;position:absolute;left:27.5%;width:45%'/>
 	</div>
-	<div id='match' align='center' style='margin-left:5%;margin-right:5%' hidden></div>
+	</div>
+	<div id='match' align='center' style='margin-left:5%;margin-right:5%' hidden>
+	    <img src='src/img/matchres.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
+		<div id='matchinfo' style='z-index:1;position:absolute;left:15%;width:70%;color:white;font-size:50px'></div>
+	</div>
   </body>
 </html>
 <style>
@@ -106,24 +92,71 @@
   var INC=parseFloat(info[3]);
   var GPA=parseFloat(info[4]);
   var STFC=parseInt(info[5]);
+  var timer = setInterval(function() {
+		if (document.getElementById('bg').complete) {
+			clearInterval(timer)
+			document.getElementById('male1').style.top=0.295*document.body.scrollHeight;
+			document.getElementById('male2').style.top=0.295*document.body.scrollHeight;
+			document.getElementById('female1').style.top=0.295*document.body.scrollHeight;
+			document.getElementById('female2').style.top=0.295*document.body.scrollHeight;
+			document.getElementById('wechat').style.top=0.385*document.body.scrollHeight;
+			document.getElementById('type1').style.top=0.46*document.body.scrollHeight;
+			document.getElementById('type1on').style.top=0.46*document.body.scrollHeight;
+			document.getElementById('type2').style.top=0.55*document.body.scrollHeight;
+			document.getElementById('type2on').style.top=0.55*document.body.scrollHeight;
+			document.getElementById('button').style.top=0.64*document.body.scrollHeight;
+			document.getElementById('buttons').style.display='inline';
+			document.getElementById('loading').style.visibility="hidden";
+			document.getElementById('matchinfo').style.top=0.5*document.body.scrollHeight;
+		}
+	},30)
   Bmob.initialize("7f518700e53363110974536ce2d479fb", "a7bdd090a38a53c3487cb57c00e6cd8f");
+  var sex,type,wechat;
+  function female(){
+    sex='女';
+    document.getElementById('male1').style.display='none';
+	document.getElementById('male2').style.display='inline';
+	document.getElementById('female2').style.display='none';
+	document.getElementById('female1').style.display='inline';
+  }
+  function male(){
+    sex='男';
+    document.getElementById('female1').style.display='none';
+	document.getElementById('female2').style.display='inline';
+	document.getElementById('male2').style.display='none';
+	document.getElementById('male1').style.display='inline';
+  }
+  function type1(){
+    type=1;
+    document.getElementById('type1').style.display='none';
+	document.getElementById('type1on').style.display='inline';
+	document.getElementById('type2on').style.display='none';
+	document.getElementById('type2').style.display='inline';
+  }
+  function type2(){
+    type=0;
+    document.getElementById('type2').style.display='none';
+	document.getElementById('type2on').style.display='inline';
+	document.getElementById('type1on').style.display='none';
+	document.getElementById('type1').style.display='inline';
+  }
   function startMatch(){  //脱单匹配函数
-    var form = document.getElementById("form2");
-	if(!form.elements.sex.value){
+    wechat=document.getElementById('wechat').value;
+	if(sex==undefined){
 	  alert("请选择您的性别！")
 	}
-	else if(!form.elements.wechat.value){
-	  alert("请选择您的微信号！")
+	else if(!wechat){
+	  alert("请输入您的微信号！")
 	}
-	else if(!form.elements.type.value){
+	else if(type==undefined){
 	  alert("请选择您要匹配的类型！")
 	}
 	else{
 	  document.getElementById('friend').style.display='none';
 	  document.getElementById('loading').style.visibility="visible";
-	  if(form.elements.type.value=='1'){
+	  if(type=='1'){
 	    var query = Bmob.Query("test");
-		query.equalTo("sex","==", (form.elements.sex.value=='男'?'女':'男'));
+		query.equalTo("sex","==", (sex=='男'?'女':'男'));
 		query.equalTo("num","<", 3);
 		query.order("-res");
 		query.limit(1);
@@ -131,10 +164,10 @@
 		    document.getElementById('loading').style.visibility="hidden";
 		    document.getElementById('match').style.display="inline";
 			if(!res.length){
-				document.getElementById('match').innerHTML="暂时没有人了鸭，等一等可能会有有缘人联系你哦！"
+				document.getElementById('matchinfo').innerHTML="暂时没有人了鸭，等一等可能会有有缘人联系你哦！"
 			}
 			else{
-				document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+res[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+res[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				document.getElementById('matchinfo').innerHTML="经过匹配，您最有缘的对象的微信号是："+res[0].wechat+"，"+(sex=='男'?'她':'他')+"的脱单指数是："+res[0].res.toFixed(3)+"，快去联系"+(sex=='男'?'她':'他')+"吧！"
 				var query = Bmob.Query('test');
 				query.get(res[0].objectId).then(res => {
 					res.set('num',res.num+1)
@@ -145,9 +178,9 @@
 			}
 		});
 	  }
-	  else if(form.elements.type.value=='0'){
+	  else if(type=='0'){
 	    var query = Bmob.Query("test");
-		query.equalTo("sex","==", (form.elements.sex.value=='男'?'女':'男'));
+		query.equalTo("sex","==", (sex=='男'?'女':'男'));
 		query.equalTo("num","<", 3);
 		query.order("-res");
 		query.limit(1000);
@@ -155,12 +188,12 @@
 			if(!results.length){
 				document.getElementById('loading').style.visibility="hidden";
 				document.getElementById('match').style.display="inline";
-				document.getElementById('match').innerHTML="暂时没有人了鸭，等一等可能会有有缘人联系你哦！"
+				document.getElementById('matchinfo').innerHTML="暂时没有人了鸭，等一等可能会有有缘人联系你哦！"
 			}
 		    else if(res>=results[0].res){
 			    document.getElementById('loading').style.visibility="hidden";
 				document.getElementById('match').style.display="inline";
-				document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				document.getElementById('matchinfo').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[0].wechat+"，"+(sex=='男'?'她':'他')+"的脱单指数是："+results[0].res.toFixed(3)+"，快去联系"+(sex=='男'?'她':'他')+"吧！"
 				var query = Bmob.Query('test');
 				query.get(results[0].objectId).then(res => {
 					res.set('num',res.num+1)
@@ -172,7 +205,7 @@
 			else if(res<=results[results.length-1].res){
 			    document.getElementById('loading').style.visibility="hidden";
 				document.getElementById('match').style.display="inline";
-				document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[results.length-1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[results.length-1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				document.getElementById('matchinfo').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[results.length-1].wechat+"，"+(sex=='男'?'她':'他')+"的脱单指数是："+results[results.length-1].res.toFixed(3)+"，快去联系"+(sex=='男'?'她':'他')+"吧！"
 				var query = Bmob.Query('test');
 				query.get(results[results.length-1].objectId).then(res => {
 					res.set('num',res.num+1)
@@ -187,7 +220,7 @@
 						if((results[i].res-res)<=(res-results[i+1].res)){
 							document.getElementById('loading').style.visibility="hidden";
 							document.getElementById('match').style.display="inline";
-							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+							document.getElementById('matchinfo').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i].wechat+"，"+(sex=='男'?'她':'他')+"的脱单指数是："+results[i].res.toFixed(3)+"，快去联系"+(sex=='男'?'她':'他')+"吧！"
 							var query = Bmob.Query('test');
 							query.get(results[i].objectId).then(res => {
 								res.set('num',res.num+1)
@@ -199,7 +232,7 @@
 						else{
 							document.getElementById('loading').style.visibility="hidden";
 							document.getElementById('match').style.display="inline";
-							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i+1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i+1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+							document.getElementById('matchinfo').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i+1].wechat+"，"+(sex=='男'?'她':'他')+"的脱单指数是："+results[i+1].res.toFixed(3)+"，快去联系"+(sex=='男'?'她':'他')+"吧！"
 							var query = Bmob.Query('test');
 							query.get(results[i+1].objectId).then(res => {
 								res.set('num',res.num+1)
@@ -221,8 +254,8 @@
 	  query.set("GPA",GPA)
 	  query.set("STFC",STFC)
 	  query.set("res",res)
-	  query.set("sex",form.elements.sex.value)
-	  query.set("wechat",form.elements.wechat.value)
+	  query.set("sex",sex)
+	  query.set("wechat",wechat)
 	  query.set("num",0)
 	  query.save().then(res => {
 	    console.log(res)
