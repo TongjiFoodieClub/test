@@ -1,0 +1,224 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+	<link rel="icon" type="image/x-icon" href="src/img/logo.ico"/>
+    <title>脱单指数测试</title>
+  </head>
+  <body>
+    <div id='loading' class="spinner" hidden>
+		<div class="dot1"></div>
+		<div class="dot2"></div>
+	</div>
+	<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+	<div id='friend' align='center' style='margin-left:5%;margin-right:5%'>
+		<form action="" method="post" target="nm_iframe" id='form2'>
+			<div align='left' style='display:inline-block'>
+				你的性别
+				<br />
+				男：
+				<input type="radio" name="sex" value="男" />
+				女：
+				<input type="radio" name="sex" value="女" />
+				<br />
+				<br />
+				你的微信号
+				<br />
+				<input type="text" name="wechat"/>
+				<br />
+				<br />
+				匹配类型
+				<br />
+				脱单指数最高的：
+				<input type="radio" name="type" value="1" />
+				<br />
+				脱单指数和我最接近的：
+				<input type="radio" name="type" value="0" />
+				<br />
+				<br />
+				<div align='center'>
+					<input type="submit" value="开始匹配" onclick="startMatch()"/>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div id='match' align='center' style='margin-left:5%;margin-right:5%' hidden></div>
+  </body>
+</html>
+<style>
+.spinner {
+  margin: 100px auto;
+  width: 90px;
+  height: 90px;
+  position: relative;
+  text-align: center;
+   
+  -webkit-animation: rotate 2.0s infinite linear;
+  animation: rotate 2.0s infinite linear;
+}
+ 
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #67CF22;
+  border-radius: 100%;
+   
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+ 
+.dot2 {
+  top: auto;
+  bottom: 0px;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+ 
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+ 
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+</style>
+<script type="text/javascript" src="src/js/Bmob-1.6.3.min.js"></script>
+<script type="text/javascript">
+  if(!location.search){
+    window.location.href='main.html';
+  }
+  var info=location.search.split('=')[1].split('&');
+  var res=parseFloat(info[0]);
+  var APP=parseFloat(info[1]);
+  var HAP=parseFloat(info[2]);
+  var INC=parseFloat(info[3]);
+  var GPA=parseFloat(info[4]);
+  var STFC=parseInt(info[5]);
+  Bmob.initialize("7f518700e53363110974536ce2d479fb", "a7bdd090a38a53c3487cb57c00e6cd8f");
+  function startMatch(){  //脱单匹配函数
+    var form = document.getElementById("form2");
+	if(!form.elements.sex.value){
+	  alert("请选择您的性别！")
+	}
+	else if(!form.elements.wechat.value){
+	  alert("请选择您的微信号！")
+	}
+	else if(!form.elements.type.value){
+	  alert("请选择您要匹配的类型！")
+	}
+	else{
+	  document.getElementById('friend').style.display='none';
+	  document.getElementById('loading').style.visibility="visible";
+	  if(form.elements.type.value=='1'){
+	    var query = Bmob.Query("test");
+		query.equalTo("sex","==", (form.elements.sex.value=='男'?'女':'男'));
+		query.equalTo("num","<", 3);
+		query.order("-res");
+		query.limit(1);
+		query.find().then(res => {
+		    document.getElementById('loading').style.visibility="hidden";
+		    document.getElementById('match').style.display="inline";
+			document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+res[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+res[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+			var query = Bmob.Query('test');
+			query.get(results[0].objectId).then(res => {
+				res.set('num',res.num+1)
+				res.save()
+			}).catch(err => {
+				console.log(err)
+			})
+		});
+	  }
+	  else if(form.elements.type.value=='0'){
+	    var query = Bmob.Query("test");
+		query.equalTo("sex","==", (form.elements.sex.value=='男'?'女':'男'));
+		query.equalTo("num","<", 3);
+		query.order("-res");
+		query.limit(1000);
+		query.find().then(results => {
+		    if(res>=results[0].res){
+			    document.getElementById('loading').style.visibility="hidden";
+			    document.getElementById('match').style.display="inline";
+			    document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				var query = Bmob.Query('test');
+				query.get(results[0].objectId).then(res => {
+					res.set('num',res.num+1)
+					res.save()
+				}).catch(err => {
+					console.log(err)
+				})
+			}
+			else if(res<=results[results.length-1].res){
+			    document.getElementById('loading').style.visibility="hidden";
+			    document.getElementById('match').style.display="inline";
+			    document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[results.length-1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[results.length-1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				var query = Bmob.Query('test');
+				query.get(results[results.length-1].objectId).then(res => {
+					res.set('num',res.num+1)
+					res.save()
+				}).catch(err => {
+					console.log(err)
+				})
+			}
+			else{
+				for(var i=0;i<results.length-1;i++){
+					if(results[i].res>=res&&results[i+1].res<=res){
+						if((results[i].res-res)<=(res-results[i+1].res)){
+						    document.getElementById('loading').style.visibility="hidden";
+						    document.getElementById('match').style.display="inline";
+							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+							var query = Bmob.Query('test');
+							query.get(results[i].objectId).then(res => {
+								res.set('num',res.num+1)
+								res.save()
+							}).catch(err => {
+								console.log(err)
+							})
+						}
+						else{
+						    document.getElementById('loading').style.visibility="hidden";
+						    document.getElementById('match').style.display="inline";
+							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i+1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i+1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+							var query = Bmob.Query('test');
+							query.get(results[i+1].objectId).then(res => {
+								res.set('num',res.num+1)
+								res.save()
+							}).catch(err => {
+								console.log(err)
+							})
+						}
+						break;
+					}
+				}
+			}
+		});
+	  }
+	  var query = Bmob.Query('test');
+	  query.set("APP",APP)
+	  query.set("HAP",HAP)
+	  query.set("INC",INC)
+	  query.set("GPA",GPA)
+	  query.set("STFC",STFC)
+	  query.set("res",res)
+	  query.set("sex",form.elements.sex.value)
+	  query.set("wechat",form.elements.wechat.value)
+	  query.set("num",0)
+	  query.save().then(res => {
+	    console.log(res)
+	  }).catch(err => {
+        console.log(err)
+	  })
+	}
+  }
+</script>

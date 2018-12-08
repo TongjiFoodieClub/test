@@ -1,0 +1,137 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+	<link rel="icon" type="image/x-icon" href="src/img/logo.ico"/>
+    <title>脱单指数测试</title>
+  </head>
+  <body>
+    <div id='loading' class="spinner">
+		<div class="dot1"></div>
+		<div class="dot2"></div>
+	</div>
+    <canvas id="share" width="1600" height="2400" hidden></canvas>
+	<div id='sharediv' align='center' style='margin-left:5%;margin-right:5%' hidden>
+		<img id='sharepic' src='' style='position:absolute;top:0;left:0;width:100%;height:auto;'/>
+	</div>
+  </body>
+</html>
+<style>
+.spinner {
+  margin: 100px auto;
+  width: 90px;
+  height: 90px;
+  position: relative;
+  text-align: center;
+   
+  -webkit-animation: rotate 2.0s infinite linear;
+  animation: rotate 2.0s infinite linear;
+}
+ 
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #67CF22;
+  border-radius: 100%;
+   
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+ 
+.dot2 {
+  top: auto;
+  bottom: 0px;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+ 
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+ 
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+</style>
+<script type="text/javascript">
+  if(!location.search){
+    window.location.href='main.html';
+  }
+  var res=parseFloat(location.search.split('=')[1]);
+  var cxt=document.getElementById("share").getContext("2d");
+    var bgpic = new Image();
+	if(res<=0.5){
+	  bgpic.src = 'src/img/sad.jpg'; 
+	}
+	else if(res>0.5&&res<=0.75){
+	  bgpic.src = 'src/img/normal.jpg'; 
+	}
+	else{
+	  bgpic.src = 'src/img/happy.jpg'; 
+	}
+    bgpic.onload=function(){
+      cxt.drawImage(bgpic,0,0,1600,2400);
+	  cxt.textAlign='center';
+	  cxt.fillStyle="#FFFFFF"
+      cxt.font = "52px Arial";
+      cxt.fillText(res.toFixed(3) ,1040, 1728);
+	  cxt.fillStyle="#000000"
+	  cxt.font = "50px Arial";
+	  if(res>=0&&res<0.1){
+	    var info=["或许你应该自信点儿 (•̀ω•́)✧","npy？这辈子是不可能的了 (ಥ_ಥ)","打扰一下，你是母胎SOLO嘛"]
+	    cxt.fillText("或许你应该自信点儿 (•̀ω•́)✧" ,800, 1880);
+	  }
+	  else if(res>=0.1&&res<0.2){
+	    var info=["不找了～找不到了～","小分队救不了你了 (ಥ_ಥ)","冬天应该只有静电和你啪啪啪吧(•͈˽•͈)"] 
+	    cxt.fillText("不找了～找不到了～" ,800, 1880);
+	  }
+	  else if(res>=0.2&&res<0.3){
+	    var info=["或许关注久了颜值就能提高吧 (•͈˽•͈)","只能说，同学你的进步空间很大哟","你不叫单身狗，你叫孤狼"]
+	    cxt.fillText("或许关注久了颜值就能提高吧 (•͈˽•͈)" ,800, 1880);
+	  }
+	  else if(res>=0.3&&res<0.4){
+	    var info=["我这叫凭实力单身","dbq你拖了同济人的后腿 (ಥ_ಥ)","你应该在车底，不应该在这里(•̀ω•́)✧"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
+	  }
+	  else if(res>=0.4&&res<0.5){
+	    var info=["dbq你拖了吃货们的后腿 (ಥ_ಥ)","今年圣诞节你还是一个人过吧(ಥ_ಥ)","你一条狗 吃饭旅行走走停停 (ಥ_ಥ)"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
+	  }
+	  else if(res>=0.5&&res<0.6){
+	    var info=["耶！你高于人均水平了 (•̀ω•́)✧","一个狗的夜，你的心，应该放在哪里","天青色等艳遇，你在等小分队的分配咩"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
+	  }
+	  else if(res>=0.6&&res<0.7){
+	    var info=["我觉得你低估了自己的颜值 (๑•́₃•̀๑)","你没有打火机怎么点燃了小分队的心","同学，你打分是不是谦虚了一下"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
+	  }
+	  else if(res>=0.7&&res<0.8){
+	    var info=["哇塞！优秀的同学请你坐下 (∩ᵒ̴̶̷̤⌔ᵒ̴̶̷̤∩)","诶哟不错哦，小分队给你分配～","你可以继续跟着小分队胡吃海塞啦"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
+	  }
+	  else if(res>=0.8&&res<0.9){
+	    var info=["你离脱单只差1、、呢 (•̀ω•́)✧","快来接收你的命定良人(•̀ω•́)✧","小分队觉得你应该经常被表白(•̀ω•́)✧"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
+	  }
+	  else if(res>=0.9&&res<=1){
+	    var info=["千年一遇！！这种人还不脱单？？？","请问你现在有几个npy？","传说中的撩妹(汉)大神?"]
+	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
+	  }
+	  var image = document.getElementById("share").toDataURL("image/png");
+	  document.getElementById('sharepic').src=image;
+	  document.getElementById('sharediv').style.display='inline';
+	  document.getElementById('loading').style.visibility="hidden";
+    }
+</script>

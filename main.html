@@ -4,96 +4,94 @@
 	<link rel="icon" type="image/x-icon" href="src/img/logo.ico"/>
     <title>脱单指数测试</title>
   </head>
-  <body>
-  <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
-  <canvas id="share" width="1600" height="2400" hidden></canvas>
+  <body>   
   <div id='loading' class="spinner">
     <div class="dot1"></div>
     <div class="dot2"></div>
   </div>
   <div id='test'>
-  <img id='bg' src='src/img/background.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
-  <div id='buttons' hidden>
-  <img id='onetrue1' src='src/img/button.png' onclick="onetrue()" style='z-index:1;position:absolute;left:18%;width:10%'/>
-  <img id='onetrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:18%;width:10%'/>
-  <img id='onefalse1' src='src/img/button.png' onclick="onefalse()" style='z-index:1;position:absolute;left:42%;width:10%'/>
-  <img id='onefalse2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:42%;width:10%'/>
+	<img id='bg' src='src/img/background.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
+	<div id='buttons' hidden>
+		<img id='onetrue1' src='src/img/button.png' onclick="onetrue()" style='z-index:1;position:absolute;left:18%;width:10%'/>
+		<img id='onetrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:18%;width:10%'/>
+		<img id='onefalse1' src='src/img/button.png' onclick="onefalse()" style='z-index:1;position:absolute;left:42%;width:10%'/>
+		<img id='onefalse2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:42%;width:10%'/>
   
-  <img id='twotrue1' src='src/img/button.png' onclick="twotrue()" style='z-index:1;position:absolute;left:27%;width:10%'/>
-  <img id='twotrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:27%;width:10%'/>
-  <img id='twofalse1' src='src/img/button.png' onclick="twofalse()" style='z-index:1;position:absolute;left:57%;width:10%'/>
-  <img id='twofalse2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:57%;width:10%'/>
+		<img id='twotrue1' src='src/img/button.png' onclick="twotrue()" style='z-index:1;position:absolute;left:27%;width:10%'/>
+		<img id='twotrue2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:27%;width:10%'/>
+		<img id='twofalse1' src='src/img/button.png' onclick="twofalse()" style='z-index:1;position:absolute;left:57%;width:10%'/>
+		<img id='twofalse2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:57%;width:10%'/>
   
-  <img id='three1' src='src/img/button.png' data-index="1" onclick="three(this)" style='z-index:1;position:absolute;left:10%;width:9%'/>
-  <img id='three1on' src='src/img/buttonred.png' data-index="1" onclick="three(this)" hidden style='z-index:1;position:absolute;left:10%;width:9%'/>
-  <img id='three2' src='src/img/button.png' data-index="2" onclick="three(this)" style='z-index:1;position:absolute;left:17%;width:9%'/>
-  <img id='three2on' src='src/img/buttonred.png' data-index="2" onclick="three(this)" hidden style='z-index:1;position:absolute;left:17%;width:9%'/>
-  <img id='three3' src='src/img/button.png' data-index="3" onclick="three(this)" style='z-index:1;position:absolute;left:24%;width:9%'/>
-  <img id='three3on' src='src/img/buttonred.png' data-index="3" onclick="three(this)" hidden style='z-index:1;position:absolute;left:24%;width:9%'/>
-  <img id='three4' src='src/img/button.png' data-index="4" onclick="three(this)" style='z-index:1;position:absolute;left:31%;width:9%'/>
-  <img id='three4on' src='src/img/buttonred.png' data-index="4" onclick="three(this)" hidden style='z-index:1;position:absolute;left:31%;width:9%'/>
-  <img id='three5' src='src/img/button.png' data-index="5" onclick="three(this)" onclick="twotrue()" style='z-index:1;position:absolute;left:38%;width:9%'/>
-  <img id='three5on' src='src/img/buttonred.png' data-index="5" onclick="three(this)" hidden style='z-index:1;position:absolute;left:38%;width:9%'/>
-  <img id='three6' src='src/img/button.png' data-index="6" onclick="three(this)" style='z-index:1;position:absolute;left:45%;width:9%'/>
-  <img id='three6on' src='src/img/buttonred.png' data-index="6" onclick="three(this)" hidden style='z-index:1;position:absolute;left:45%;width:9%'/>
-  <img id='three7' src='src/img/button.png' data-index="7" onclick="three(this)" style='z-index:1;position:absolute;left:52%;width:9%'/>
-  <img id='three7on' src='src/img/buttonred.png' data-index="7" onclick="three(this)" hidden style='z-index:1;position:absolute;left:52%;width:9%'/>
-  <img id='three8' src='src/img/button.png' data-index="8" onclick="three(this)" style='z-index:1;position:absolute;left:59%;width:9%'/>
-  <img id='three8on' src='src/img/buttonred.png' data-index="8" onclick="three(this)" hidden style='z-index:1;position:absolute;left:59%;width:9%'/>
-  <img id='three9' src='src/img/button.png' data-index="9" onclick="three(this)" style='z-index:1;position:absolute;left:66%;width:9%'/>
-  <img id='three9on' src='src/img/buttonred.png' data-index="9" onclick="three(this)" hidden style='z-index:1;position:absolute;left:66%;width:9%'/>
-  <img id='three10' src='src/img/button.png' data-index="10" onclick="three(this)" style='z-index:1;position:absolute;left:73%;width:9%'/>
-  <img id='three10on' src='src/img/buttonred.png' data-index="10" onclick="three(this)" hidden style='z-index:1;position:absolute;left:73%;width:9%'/>
+		<img id='three1' src='src/img/button.png' data-index="1" onclick="three(this)" style='z-index:1;position:absolute;left:10%;width:9%'/>
+		<img id='three1on' src='src/img/buttonred.png' data-index="1" onclick="three(this)" hidden style='z-index:1;position:absolute;left:10%;width:9%'/>
+		<img id='three2' src='src/img/button.png' data-index="2" onclick="three(this)" style='z-index:1;position:absolute;left:17%;width:9%'/>
+		<img id='three2on' src='src/img/buttonred.png' data-index="2" onclick="three(this)" hidden style='z-index:1;position:absolute;left:17%;width:9%'/>
+		<img id='three3' src='src/img/button.png' data-index="3" onclick="three(this)" style='z-index:1;position:absolute;left:24%;width:9%'/>
+		<img id='three3on' src='src/img/buttonred.png' data-index="3" onclick="three(this)" hidden style='z-index:1;position:absolute;left:24%;width:9%'/>
+		<img id='three4' src='src/img/button.png' data-index="4" onclick="three(this)" style='z-index:1;position:absolute;left:31%;width:9%'/>
+		<img id='three4on' src='src/img/buttonred.png' data-index="4" onclick="three(this)" hidden style='z-index:1;position:absolute;left:31%;width:9%'/>
+		<img id='three5' src='src/img/button.png' data-index="5" onclick="three(this)" onclick="twotrue()" style='z-index:1;position:absolute;left:38%;width:9%'/>
+		<img id='three5on' src='src/img/buttonred.png' data-index="5" onclick="three(this)" hidden style='z-index:1;position:absolute;left:38%;width:9%'/>
+		<img id='three6' src='src/img/button.png' data-index="6" onclick="three(this)" style='z-index:1;position:absolute;left:45%;width:9%'/>
+		<img id='three6on' src='src/img/buttonred.png' data-index="6" onclick="three(this)" hidden style='z-index:1;position:absolute;left:45%;width:9%'/>
+		<img id='three7' src='src/img/button.png' data-index="7" onclick="three(this)" style='z-index:1;position:absolute;left:52%;width:9%'/>
+		<img id='three7on' src='src/img/buttonred.png' data-index="7" onclick="three(this)" hidden style='z-index:1;position:absolute;left:52%;width:9%'/>
+		<img id='three8' src='src/img/button.png' data-index="8" onclick="three(this)" style='z-index:1;position:absolute;left:59%;width:9%'/>
+		<img id='three8on' src='src/img/buttonred.png' data-index="8" onclick="three(this)" hidden style='z-index:1;position:absolute;left:59%;width:9%'/>
+		<img id='three9' src='src/img/button.png' data-index="9" onclick="three(this)" style='z-index:1;position:absolute;left:66%;width:9%'/>
+		<img id='three9on' src='src/img/buttonred.png' data-index="9" onclick="three(this)" hidden style='z-index:1;position:absolute;left:66%;width:9%'/>
+		<img id='three10' src='src/img/button.png' data-index="10" onclick="three(this)" style='z-index:1;position:absolute;left:73%;width:9%'/>
+		<img id='three10on' src='src/img/buttonred.png' data-index="10" onclick="three(this)" hidden style='z-index:1;position:absolute;left:73%;width:9%'/>
   
-  <img id='four1' src='src/img/button.png' data-index="1" onclick="four(this)" style='z-index:1;position:absolute;left:18%;width:9%'/>
-  <img id='four1on' src='src/img/buttonred.png' data-index="1" onclick="four(this)" hidden style='z-index:1;position:absolute;left:18%;width:9%'/>
-  <img id='four2' src='src/img/button.png' data-index="2" onclick="four(this)" style='z-index:1;position:absolute;left:25%;width:9%'/>
-  <img id='four2on' src='src/img/buttonred.png' data-index="2" onclick="four(this)" hidden style='z-index:1;position:absolute;left:25%;width:9%'/>
-  <img id='four3' src='src/img/button.png' data-index="3" onclick="four(this)" style='z-index:1;position:absolute;left:32%;width:9%'/>
-  <img id='four3on' src='src/img/buttonred.png' data-index="3" onclick="four(this)" hidden style='z-index:1;position:absolute;left:32%;width:9%'/>
-  <img id='four4' src='src/img/button.png' data-index="4" onclick="four(this)" style='z-index:1;position:absolute;left:39%;width:9%'/>
-  <img id='four4on' src='src/img/buttonred.png' data-index="4" onclick="four(this)" hidden style='z-index:1;position:absolute;left:39%;width:9%'/>
-  <img id='four5' src='src/img/button.png' data-index="5" onclick="four(this)" onclick="twotrue()" style='z-index:1;position:absolute;left:46%;width:9%'/>
-  <img id='four5on' src='src/img/buttonred.png' data-index="5" onclick="four(this)" hidden style='z-index:1;position:absolute;left:46%;width:9%'/>
-  <img id='four6' src='src/img/button.png' data-index="6" onclick="four(this)" style='z-index:1;position:absolute;left:53%;width:9%'/>
-  <img id='four6on' src='src/img/buttonred.png' data-index="6" onclick="four(this)" hidden style='z-index:1;position:absolute;left:53%;width:9%'/>
-  <img id='four7' src='src/img/button.png' data-index="7" onclick="four(this)" style='z-index:1;position:absolute;left:60%;width:9%'/>
-  <img id='four7on' src='src/img/buttonred.png' data-index="7" onclick="four(this)" hidden style='z-index:1;position:absolute;left:60%;width:9%'/>
-  <img id='four8' src='src/img/button.png' data-index="8" onclick="four(this)" style='z-index:1;position:absolute;left:67%;width:9%'/>
-  <img id='four8on' src='src/img/buttonred.png' data-index="8" onclick="four(this)" hidden style='z-index:1;position:absolute;left:67%;width:9%'/>
-  <img id='four9' src='src/img/button.png' data-index="9" onclick="four(this)" style='z-index:1;position:absolute;left:74%;width:9%'/>
-  <img id='four9on' src='src/img/buttonred.png' data-index="9" onclick="four(this)" hidden style='z-index:1;position:absolute;left:74%;width:9%'/>
-  <img id='four10' src='src/img/button.png' data-index="10" onclick="four(this)" style='z-index:1;position:absolute;left:81%;width:9%'/>
-  <img id='four10on' src='src/img/buttonred.png' data-index="10" onclick="four(this)" hidden style='z-index:1;position:absolute;left:81%;width:9%'/>
+		<img id='four1' src='src/img/button.png' data-index="1" onclick="four(this)" style='z-index:1;position:absolute;left:18%;width:9%'/>
+		<img id='four1on' src='src/img/buttonred.png' data-index="1" onclick="four(this)" hidden style='z-index:1;position:absolute;left:18%;width:9%'/>
+		<img id='four2' src='src/img/button.png' data-index="2" onclick="four(this)" style='z-index:1;position:absolute;left:25%;width:9%'/>
+		<img id='four2on' src='src/img/buttonred.png' data-index="2" onclick="four(this)" hidden style='z-index:1;position:absolute;left:25%;width:9%'/>
+		<img id='four3' src='src/img/button.png' data-index="3" onclick="four(this)" style='z-index:1;position:absolute;left:32%;width:9%'/>
+		<img id='four3on' src='src/img/buttonred.png' data-index="3" onclick="four(this)" hidden style='z-index:1;position:absolute;left:32%;width:9%'/>
+		<img id='four4' src='src/img/button.png' data-index="4" onclick="four(this)" style='z-index:1;position:absolute;left:39%;width:9%'/>
+		<img id='four4on' src='src/img/buttonred.png' data-index="4" onclick="four(this)" hidden style='z-index:1;position:absolute;left:39%;width:9%'/>
+		<img id='four5' src='src/img/button.png' data-index="5" onclick="four(this)" onclick="twotrue()" style='z-index:1;position:absolute;left:46%;width:9%'/>
+		<img id='four5on' src='src/img/buttonred.png' data-index="5" onclick="four(this)" hidden style='z-index:1;position:absolute;left:46%;width:9%'/>
+		<img id='four6' src='src/img/button.png' data-index="6" onclick="four(this)" style='z-index:1;position:absolute;left:53%;width:9%'/>
+		<img id='four6on' src='src/img/buttonred.png' data-index="6" onclick="four(this)" hidden style='z-index:1;position:absolute;left:53%;width:9%'/>
+		<img id='four7' src='src/img/button.png' data-index="7" onclick="four(this)" style='z-index:1;position:absolute;left:60%;width:9%'/>
+		<img id='four7on' src='src/img/buttonred.png' data-index="7" onclick="four(this)" hidden style='z-index:1;position:absolute;left:60%;width:9%'/>
+		<img id='four8' src='src/img/button.png' data-index="8" onclick="four(this)" style='z-index:1;position:absolute;left:67%;width:9%'/>
+		<img id='four8on' src='src/img/buttonred.png' data-index="8" onclick="four(this)" hidden style='z-index:1;position:absolute;left:67%;width:9%'/>
+		<img id='four9' src='src/img/button.png' data-index="9" onclick="four(this)" style='z-index:1;position:absolute;left:74%;width:9%'/>
+		<img id='four9on' src='src/img/buttonred.png' data-index="9" onclick="four(this)" hidden style='z-index:1;position:absolute;left:74%;width:9%'/>
+		<img id='four10' src='src/img/button.png' data-index="10" onclick="four(this)" style='z-index:1;position:absolute;left:81%;width:9%'/>
+		<img id='four10on' src='src/img/buttonred.png' data-index="10" onclick="four(this)" hidden style='z-index:1;position:absolute;left:81%;width:9%'/>
   
-  <img id='five' src='src/img/button.png' style='z-index:1;position:absolute;left:53%;width:30%'/>
-  <input id='gpa' style='z-index:1;position:absolute;left:58%;background-color:transparent;width:20%;height:100px;line-height:100px;font-size:40;text-align:center;border:none'>
+		<img id='five' src='src/img/button.png' style='z-index:1;position:absolute;left:53%;width:30%'/>
+		<input id='gpa' style='z-index:1;position:absolute;left:58%;background-color:transparent;width:20%;height:100px;line-height:100px;font-size:40;text-align:center;border:none'>
   
-  <img id='six1' src='src/img/button.png' data-index="1" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six1on' src='src/img/buttonred.png' data-index="1" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six2' src='src/img/button.png' data-index="2" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six2on' src='src/img/buttonred.png' data-index="2" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six3' src='src/img/button.png' data-index="3" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six3on' src='src/img/buttonred.png' data-index="3" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six4' src='src/img/button.png' data-index="4" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six4on' src='src/img/buttonred.png' data-index="4" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six5' src='src/img/button.png' data-index="5" onclick="six(this)" onclick="twotrue()" style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six5on' src='src/img/buttonred.png' data-index="5" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six6' src='src/img/button.png' data-index="6" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six6on' src='src/img/buttonred.png' data-index="6" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six7' src='src/img/button.png' data-index="7" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six7on' src='src/img/buttonred.png' data-index="7" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six8' src='src/img/button.png' data-index="8" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six8on' src='src/img/buttonred.png' data-index="8" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six9' src='src/img/button.png' data-index="9" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six9on' src='src/img/buttonred.png' data-index="9" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six10' src='src/img/button.png' data-index="10" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six10on' src='src/img/buttonred.png' data-index="10" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
-  <img id='six11' src='src/img/button.png' data-index="11" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
-  <img id='six11on' src='src/img/buttonred.png' data-index="11" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six1' src='src/img/button.png' data-index="1" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six1on' src='src/img/buttonred.png' data-index="1" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six2' src='src/img/button.png' data-index="2" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six2on' src='src/img/buttonred.png' data-index="2" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six3' src='src/img/button.png' data-index="3" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six3on' src='src/img/buttonred.png' data-index="3" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six4' src='src/img/button.png' data-index="4" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six4on' src='src/img/buttonred.png' data-index="4" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six5' src='src/img/button.png' data-index="5" onclick="six(this)" onclick="twotrue()" style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six5on' src='src/img/buttonred.png' data-index="5" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six6' src='src/img/button.png' data-index="6" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six6on' src='src/img/buttonred.png' data-index="6" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six7' src='src/img/button.png' data-index="7" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six7on' src='src/img/buttonred.png' data-index="7" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six8' src='src/img/button.png' data-index="8" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six8on' src='src/img/buttonred.png' data-index="8" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six9' src='src/img/button.png' data-index="9" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six9on' src='src/img/buttonred.png' data-index="9" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six10' src='src/img/button.png' data-index="10" onclick="six(this)" style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six10on' src='src/img/buttonred.png' data-index="10" onclick="six(this)" hidden style='z-index:1;position:absolute;left:79%;width:9%'/>
+		<img id='six11' src='src/img/button.png' data-index="11" onclick="six(this)" style='z-index:1;position:absolute;left:37%;width:9%'/>
+		<img id='six11on' src='src/img/buttonred.png' data-index="11" onclick="six(this)" hidden style='z-index:1;position:absolute;left:37%;width:9%'/>
 
-  <img id='submit' src='src/img/submit.png' onclick="startTest()" style='z-index:1;position:absolute;margin-left:27.5%;width:45%'/>
-  </div>
+		<img id='submit' src='src/img/submit.png' onclick="startTest()" style='z-index:1;position:absolute;margin-left:27.5%;width:45%'/>
+	</div>
   </div>
   <div id='res' align='center' style='margin-left:5%;margin-right:5%' hidden>
     <img src='src/img/res.jpg' style='z-index:-1;position:absolute;top:0;left:0;width:100%;height:auto;'/>
@@ -101,43 +99,6 @@
 	<img id='resbutton1' onClick="makefriend()" src='src/img/resbutton1.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
 	<img id='resbutton2' onClick="refresh()" src='src/img/resbutton2.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
 	<img id='resbutton3' onClick="share()" src='src/img/resbutton3.png' style='z-index:1;position:absolute;left:30%;width:40%;'/>
-  </div>
-  <div id='sharediv' align='center' style='margin-left:5%;margin-right:5%' hidden>
-    <img id='sharepic' src='' style='position:absolute;top:0;left:0;width:100%;height:auto;'/>
-  </div>
-  <div id='friend' align='center' style='margin-left:5%;margin-right:5%' hidden>
-    <form action="" method="post" target="nm_iframe" id='form2'>
-	  <div align='left' style='display:inline-block'>
-	    你的性别
-		<br />
-		男：
-        <input type="radio" name="sex" value="男" />
-        女：
-        <input type="radio" name="sex" value="女" />
-		<br />
-		<br />
-		你的微信号
-		<br />
-		<input type="text" name="wechat"/>
-		<br />
-		<br />
-		匹配类型
-		<br />
-		脱单指数最高的：
-        <input type="radio" name="type" value="1" />
-		<br />
-        脱单指数和我最接近的：
-        <input type="radio" name="type" value="0" />
-		<br />
-		<br />
-		<div align='center'>
-	      <input type="submit" value="开始匹配" onclick="startMatch()"/>
-	    </div>
-	  </div>
-	</form>
-  </div>
-  <div id='match' align='center' style='margin-left:5%;margin-right:5%' hidden>
-    匹配中...
   </div>
   </body>
 </html>
@@ -191,8 +152,6 @@
   }
 }
 </style>
-<script type="text/javascript" src="src/js/Bmob-1.6.3.min.js"></script>
-<script type="text/javascript" src="src/js/html2canvas.min.js"></script>
 <script type="text/javascript">
   var timer = setInterval(function() {
     if (document.getElementById('bg').complete) {
@@ -278,11 +237,10 @@
 		document.getElementById('submit').style.top=0.88*document.body.scrollHeight;
   
 		document.getElementById('buttons').style.display='inline';
-		document.getElementById('loading').style.display='none';
+		document.getElementById('loading').style.visibility="hidden";
     }
   }, 30)
   var TD,APP,HAP,INC,GPA,STFC,res;
-  Bmob.initialize("7f518700e53363110974536ce2d479fb", "a7bdd090a38a53c3487cb57c00e6cd8f");
   function onetrue(){
     TD=1;
     document.getElementById('onetrue1').style.display='none';
@@ -392,184 +350,10 @@
   function refresh(){ //重新测试
     window.location.reload()
   }
-  function share(){ //转发分享函数
-    document.getElementById('loading').style.display='inline';
-    var cxt=document.getElementById("share").getContext("2d");
-    var bgpic = new Image();
-	if(res<=0.5){
-	  bgpic.src = 'src/img/sad.jpg'; 
-	}
-	else if(res>0.5&&res<=0.75){
-	  bgpic.src = 'src/img/normal.jpg'; 
-	}
-	else{
-	  bgpic.src = 'src/img/happy.jpg'; 
-	}
-    bgpic.onload=function(){
-      cxt.drawImage(bgpic,0,0,1600,2400);
-	  cxt.textAlign='center';
-	  cxt.fillStyle="#FFFFFF"
-      cxt.font = "52px Arial";
-      cxt.fillText(res.toFixed(3) ,1040, 1728);
-	  cxt.fillStyle="#000000"
-	  cxt.font = "50px Arial";
-	  if(res>=0&&res<0.1){
-	    var info=["或许你应该自信点儿 (•̀ω•́)✧","npy？这辈子是不可能的了 (ಥ_ಥ)","打扰一下，你是母胎SOLO嘛"]
-	    cxt.fillText("或许你应该自信点儿 (•̀ω•́)✧" ,800, 1880);
-	  }
-	  else if(res>=0.1&&res<0.2){
-	    var info=["不找了～找不到了～","小分队救不了你了 (ಥ_ಥ)","冬天应该只有静电和你啪啪啪吧(•͈˽•͈)"] 
-	    cxt.fillText("不找了～找不到了～" ,800, 1880);
-	  }
-	  else if(res>=0.2&&res<0.3){
-	    var info=["或许关注久了颜值就能提高吧 (•͈˽•͈)","只能说，同学你的进步空间很大哟","你不叫单身狗，你叫孤狼"]
-	    cxt.fillText("或许关注久了颜值就能提高吧 (•͈˽•͈)" ,800, 1880);
-	  }
-	  else if(res>=0.3&&res<0.4){
-	    var info=["我这叫凭实力单身","dbq你拖了同济人的后腿 (ಥ_ಥ)","你应该在车底，不应该在这里(•̀ω•́)✧"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
-	  }
-	  else if(res>=0.4&&res<0.5){
-	    var info=["dbq你拖了吃货们的后腿 (ಥ_ಥ)","今年圣诞节你还是一个人过吧(ಥ_ಥ)","你一条狗 吃饭旅行走走停停 (ಥ_ಥ)"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
-	  }
-	  else if(res>=0.5&&res<0.6){
-	    var info=["耶！你高于人均水平了 (•̀ω•́)✧","一个狗的夜，你的心，应该放在哪里","天青色等艳遇，你在等小分队的分配咩"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
-	  }
-	  else if(res>=0.6&&res<0.7){
-	    var info=["我觉得你低估了自己的颜值 (๑•́₃•̀๑)","你没有打火机怎么点燃了小分队的心","同学，你打分是不是谦虚了一下"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
-	  }
-	  else if(res>=0.7&&res<0.8){
-	    var info=["哇塞！优秀的同学请你坐下 (∩ᵒ̴̶̷̤⌔ᵒ̴̶̷̤∩)","诶哟不错哦，小分队给你分配～","你可以继续跟着小分队胡吃海塞啦"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
-	  }
-	  else if(res>=0.8&&res<0.9){
-	    var info=["你离脱单只差1、、呢 (•̀ω•́)✧","快来接收你的命定良人(•̀ω•́)✧","小分队觉得你应该经常被表白(•̀ω•́)✧"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
-	  }
-	  else if(res>=0.9&&res<=1){
-	    var info=["千年一遇！！这种人还不脱单？？？","请问你现在有几个npy？","传说中的撩妹(汉)大神?"]
-	    cxt.fillText(info[parseInt(Math.random()*3)] ,800, 1880);
-	  }
-	  var image = document.getElementById("share").toDataURL("image/png");
-      document.getElementById('res').style.display='none';
-	  document.getElementById('sharepic').src=image;
-	  document.getElementById('sharediv').style.display='inline';
-	  document.getElementById('loading').style.display='none';
-    }
-  }
-  function back(){  //返回
-    document.getElementById('sharediv').style.display='none';
-	document.getElementById('res').style.display='inline';
+  function share(){ //跳转分享
+    window.location.href('share.html?res='+res)
   }
   function makefriend(){  //我要脱单
-    document.getElementById('res').style.display='none';
-	document.getElementById('friend').style.display='inline';
-  }
-  function startMatch(){  //脱单匹配函数
-    var form = document.getElementById("form2");
-	if(!form.elements.sex.value){
-	  alert("请选择您的性别！")
-	}
-	else if(!form.elements.wechat.value){
-	  alert("请选择您的微信号！")
-	}
-	else if(!form.elements.type.value){
-	  alert("请选择您要匹配的类型！")
-	}
-	else{
-	  document.getElementById('friend').style.display='none';
-	  document.getElementById('match').style.display='inline';
-	  if(form.elements.type.value=='1'){
-	    var query = Bmob.Query("test");
-		query.equalTo("sex","==", (form.elements.sex.value=='男'?'女':'男'));
-		query.equalTo("num","<", 3);
-		query.order("-res");
-		query.limit(1);
-		query.find().then(res => {
-			document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+res[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+res[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
-			var query = Bmob.Query('test');
-			query.get(results[0].objectId).then(res => {
-				res.set('num',res.num+1)
-				res.save()
-			}).catch(err => {
-				console.log(err)
-			})
-		});
-	  }
-	  else if(form.elements.type.value=='0'){
-	    var query = Bmob.Query("test");
-		query.equalTo("sex","==", (form.elements.sex.value=='男'?'女':'男'));
-		query.equalTo("num","<", 3);
-		query.order("-res");
-		query.limit(1000);
-		query.find().then(results => {
-		    if(res>=results[0].res){
-			    document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
-				var query = Bmob.Query('test');
-				query.get(results[0].objectId).then(res => {
-					res.set('num',res.num+1)
-					res.save()
-				}).catch(err => {
-					console.log(err)
-				})
-			}
-			else if(res<=results[results.length-1].res){
-			    document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[results.length-1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[results.length-1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
-				var query = Bmob.Query('test');
-				query.get(results[results.length-1].objectId).then(res => {
-					res.set('num',res.num+1)
-					res.save()
-				}).catch(err => {
-					console.log(err)
-				})
-			}
-			else{
-				for(var i=0;i<results.length-1;i++){
-					if(results[i].res>=res&&results[i+1].res<=res){
-						if((results[i].res-res)<=(res-results[i+1].res)){
-							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
-							var query = Bmob.Query('test');
-							query.get(results[i].objectId).then(res => {
-								res.set('num',res.num+1)
-								res.save()
-							}).catch(err => {
-								console.log(err)
-							})
-						}
-						else{
-							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i+1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i+1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
-							var query = Bmob.Query('test');
-							query.get(results[i+1].objectId).then(res => {
-								res.set('num',res.num+1)
-								res.save()
-							}).catch(err => {
-								console.log(err)
-							})
-						}
-						break;
-					}
-				}
-			}
-		});
-	  }
-	  var query = Bmob.Query('test');
-	  query.set("APP",APP)
-	  query.set("HAP",HAP)
-	  query.set("INC",INC)
-	  query.set("GPA",GPA)
-	  query.set("STFC",STFC)
-	  query.set("res",res)
-	  query.set("sex",form.elements.sex.value)
-	  query.set("wechat",form.elements.wechat.value)
-	  query.set("num",0)
-	  query.save().then(res => {
-	    console.log(res)
-	  }).catch(err => {
-        console.log(err)
-	  })
-	}
+    window.location.href('match.html?info='+res+'&'+APP+'&'+HAP+'&'+INC+'&'+GPA+'&'+STFC)
   }
 </script>
