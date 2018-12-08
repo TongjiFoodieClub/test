@@ -130,14 +130,19 @@
 		query.find().then(res => {
 		    document.getElementById('loading').style.visibility="hidden";
 		    document.getElementById('match').style.display="inline";
-			document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+res[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+res[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
-			var query = Bmob.Query('test');
-			query.get(res[0].objectId).then(res => {
-				res.set('num',res.num+1)
-				res.save()
-			}).catch(err => {
-				console.log(err)
-			})
+			if(!res.length){
+				document.getElementById('match').innerHTML="暂时没有人了鸭，等一等可能会有有缘人联系你哦！"
+			}
+			else{
+				document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+res[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+res[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				var query = Bmob.Query('test');
+				query.get(res[0].objectId).then(res => {
+					res.set('num',res.num+1)
+					res.save()
+				}).catch(err => {
+					console.log(err)
+				})
+			}
 		});
 	  }
 	  else if(form.elements.type.value=='0'){
@@ -147,10 +152,15 @@
 		query.order("-res");
 		query.limit(1000);
 		query.find().then(results => {
-		    if(res>=results[0].res){
+			if(!results.length){
+				document.getElementById('loading').style.visibility="hidden";
+				document.getElementById('match').style.display="inline";
+				document.getElementById('match').innerHTML="暂时没有人了鸭，等一等可能会有有缘人联系你哦！"
+			}
+		    else if(res>=results[0].res){
 			    document.getElementById('loading').style.visibility="hidden";
-			    document.getElementById('match').style.display="inline";
-			    document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				document.getElementById('match').style.display="inline";
+				document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[0].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[0].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
 				var query = Bmob.Query('test');
 				query.get(results[0].objectId).then(res => {
 					res.set('num',res.num+1)
@@ -161,8 +171,8 @@
 			}
 			else if(res<=results[results.length-1].res){
 			    document.getElementById('loading').style.visibility="hidden";
-			    document.getElementById('match').style.display="inline";
-			    document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[results.length-1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[results.length-1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
+				document.getElementById('match').style.display="inline";
+				document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[results.length-1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[results.length-1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
 				var query = Bmob.Query('test');
 				query.get(results[results.length-1].objectId).then(res => {
 					res.set('num',res.num+1)
@@ -175,8 +185,8 @@
 				for(var i=0;i<results.length-1;i++){
 					if(results[i].res>=res&&results[i+1].res<=res){
 						if((results[i].res-res)<=(res-results[i+1].res)){
-						    document.getElementById('loading').style.visibility="hidden";
-						    document.getElementById('match').style.display="inline";
+							document.getElementById('loading').style.visibility="hidden";
+							document.getElementById('match').style.display="inline";
 							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
 							var query = Bmob.Query('test');
 							query.get(results[i].objectId).then(res => {
@@ -187,8 +197,8 @@
 							})
 						}
 						else{
-						    document.getElementById('loading').style.visibility="hidden";
-						    document.getElementById('match').style.display="inline";
+							document.getElementById('loading').style.visibility="hidden";
+							document.getElementById('match').style.display="inline";
 							document.getElementById('match').innerHTML="经过匹配，您最有缘的对象的微信号是："+results[i+1].wechat+"，"+(form.elements.sex.value=='男'?'她':'他')+"的脱单指数是："+results[i+1].res.toFixed(3)+"，快去联系"+(form.elements.sex.value=='男'?'她':'他')+"吧！"
 							var query = Bmob.Query('test');
 							query.get(results[i+1].objectId).then(res => {
