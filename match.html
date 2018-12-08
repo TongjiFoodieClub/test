@@ -16,7 +16,9 @@
 		<img id='male2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:35%;width:10%'/>
 		<img id='female1' src='src/img/button.png' onclick="male()" style='z-index:1;position:absolute;left:68%;width:10%'/>
 		<img id='female2' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:68%;width:10%'/>
-		<input id='wechat' type='text' style='z-index:1;position:absolute;left:35%;width:55%;background-color:white;border-radius:10px;border:none;padding-left:10px;padding-right:10px;font-size:50px;color:black'/>
+		<div id='wechatdiv' style='z-index:1;position:absolute;left:35%;width:55%;background-color:white;border-radius:10px;'>
+		    <input id='wechat' type='text' style='width:100%;height:100%;line-height:100%;background-color:transparent;border:none;padding-left:10px;padding-right:10px;font-size:50px;'/>
+		</div>
 		<img id='type1' src='src/img/button.png' onclick="typeone()" style='z-index:1;position:absolute;left:44%;width:10%'/>
 		<img id='type1on' src='src/img/buttonred.png' hidden style='z-index:1;position:absolute;left:44%;width:10%'/>
 		<img id='type2' src='src/img/button.png' onclick="typetwo()" style='z-index:1;position:absolute;left:44%;width:10%'/>
@@ -101,9 +103,8 @@
 			document.getElementById('female1').style.top=0.295*height;
 			document.getElementById('female2').style.top=0.295*height;
 			
-			document.getElementById('wechat').style.top=0.385*height;
-			document.getElementById('wechat').style.height=height*100/2135;
-			document.getElementById('wechat').style.lineHeight=height*100/2135;
+			document.getElementById('wechatdiv').style.top=0.385*height;
+			document.getElementById('wechatdiv').style.height=height*100/2135;
 			
 			document.getElementById('type1').style.top=0.46*height;
 			document.getElementById('type1on').style.top=0.46*height;
