@@ -88,11 +88,12 @@
 	var timer = setInterval(function() {
 		if (document.getElementById('bg').complete) {
 			clearInterval(timer)
+			var height=parseInt(window.getComputedStyle(document.getElementById('bg')).height)
 			document.getElementById('grade').innerHTML=res.toFixed(3);
-			document.getElementById('grade').style.top=0.34*document.body.scrollHeight;
-			document.getElementById('resbutton1').style.top=0.48*document.body.scrollHeight;
-			document.getElementById('resbutton2').style.top=0.57*document.body.scrollHeight;
-			document.getElementById('resbutton3').style.top=0.66*document.body.scrollHeight;
+			document.getElementById('grade').style.top=0.34*height;
+			document.getElementById('resbutton1').style.top=0.48*height;
+			document.getElementById('resbutton2').style.top=0.57*height;
+			document.getElementById('resbutton3').style.top=0.66*height;
 			document.getElementById('loading').style.visibility="hidden";
 			document.getElementById('buttons').style.display="inline";
 		}
